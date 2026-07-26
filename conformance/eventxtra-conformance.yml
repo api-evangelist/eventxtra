@@ -1,0 +1,25 @@
+generated: '2026-07-19'
+method: searched
+source: https://eventx.io/data-protection-and-security + https://eventx.io/llms.txt
+standards:
+- id: iso-27001
+  conforms: true
+  evidence: >-
+    "ISO 27001 Certified" stated on the EventX Data Protection & Security page
+    and homepage; reiterated in llms.txt FAQ ("ISO 27001 certified").
+  source: https://eventx.io/data-protection-and-security
+- id: gdpr
+  conforms: true
+  evidence: >-
+    "GDPR Compliant" stated on the Data Protection & Security page and homepage;
+    a published sub-processor list is maintained.
+  source: https://eventx.io/data-protection-and-security
+- id: soc2
+  conforms: false
+  evidence: No SOC 2 attestation published on the security or compliance pages.
+- id: oauth2
+  conforms: false
+  evidence: No public OpenAPI/securityScheme or documented OAuth 2 flow found.
+- id: rfc9457
+  conforms: false
+  evidence: No public OpenAPI or documented problem+json error format found.

@@ -1,0 +1,14 @@
+{
+  "repo": "eventxtra",
+  "feeds": [
+    {
+      "source": "https://eventx.io/contact-us",
+      "feed_url": "https://eventx.io/feed.xml",
+      "title": "",
+      "saved": 2,
+      "method": "discovered"
+    }
+  ],
+  "post_count": 2,
+  "fetched": "2026-07-25T15:00:33Z"
+}

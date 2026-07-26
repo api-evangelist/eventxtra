@@ -1,8 +1,31 @@
 aid: eventxtra
-name: EventXtra
-description: EventXtra is a company surfaced as a portfolio company of 500-global and added to the API
-  Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+name: EventX
+description: >-
+  EventX (EventXtra Limited) is an AI-powered, all-in-one event management and
+  marketing platform for in-person, virtual, and hybrid events, headquartered in
+  Hong Kong with offices across APAC. It provides event registration and RSVP,
+  QR-code check-in and badge printing, ticketing and payment with 0% platform
+  fees, AI Lead Finder, event website building, virtual event hosting, sponsor
+  and exhibitor management, lead capture, and WhatsApp/email marketing. EventX
+  serves 5,600+ brands and is ISO 27001 certified and GDPR compliant. It also
+  offers an official hosted MCP server that lets AI assistants query live event
+  data (registrations, sessions, ticket sales, attendance) in natural language,
+  provisioned one-click from the EventX dashboard and compatible with Claude,
+  ChatGPT, Cursor, and OpenCode. Added to the API Evangelist network as a
+  portfolio company of 500 Global and enriched via the pipeline.
 url: https://raw.githubusercontent.com/api-evangelist/eventxtra/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source: []
+  generated: '2026-07-22'
+  method: derived
+image: https://eventx.io/images/og/index-b41677e1.png
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
@@ -11,9 +34,17 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
+- Event Management
+- Event Registration
+- Ticketing
+- Check-in
+- Event Marketing
+- Virtual Events
+- MCP
+- AI
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -23,3 +54,38 @@ maintainers:
 common:
 - type: Website
   url: https://eventx.io
+- type: Documentation
+  url: https://help.eventx.io/
+- type: HelpCenter
+  url: https://help.eventx.io/
+- type: Support
+  url: https://eventx.io/contact-us
+- type: Blog
+  url: https://eventx.io/blog
+- type: Pricing
+  url: https://eventx.io/pricing
+- type: Login
+  url: https://portal.eventx.io/
+- type: PrivacyPolicy
+  url: https://eventx.io/privacy-policy
+- type: TermsOfService
+  url: https://eventx.io/terms-of-service
+- type: GitHubOrganization
+  url: https://github.com/eventxtra
+- type: Compliance
+  url: https://eventx.io/data-protection-and-security
+- type: MCPServer
+  url: mcp/eventxtra-mcp.yml
+- type: LLMsTxt
+  url: llms/eventxtra-llms.txt
+- type: Conformance
+  url: conformance/eventxtra-conformance.yml
+- type: TrustCenter
+  url: security/eventxtra-trust-center.yml
+- type: DomainSecurity
+  url: security/eventxtra-domain-security.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

@@ -1,0 +1,89 @@
+# EventX
+
+> EventX is an AI-powered all-in-one event management and marketing platform for in-person, virtual, and hybrid events. It provides tools for registration, check-in & badge printing, AI lead generation, ticketing & payment, event websites, virtual events, sponsor management, and lead capture.
+
+Bilingual website (English / Traditional Chinese) built with Middleman and Tailwind CSS v4. Deployed to Cloudflare Pages. Headquartered in Hong Kong with offices across APAC.
+
+## Pages
+
+- [Home](https://eventx.io/): AI-powered all-in-one event management platform overview
+- [About](https://eventx.io/about): Company mission, story, and impact in the event technology space
+- [Pricing](https://eventx.io/pricing): Plans and pricing for events of every size
+- [Contact Us](https://eventx.io/contact-us): Contact form and office locations (Hong Kong, Shanghai, Guangzhou, Taipei, Malaysia)
+- [Referral Program](https://eventx.io/referral-program): Earn up to US$250 per qualified referral
+- [Privacy Policy](https://eventx.io/privacy-policy): Data handling and privacy practices
+- [Terms of Service](https://eventx.io/terms-of-service): Terms governing platform use
+
+## Products
+
+- [AI Lead Finder](https://eventx.io/event-management-marketing/ai-lead-finder): AI-powered lead generation for event sales and marketing teams
+- [Check-in & Badge Printing](https://eventx.io/event-management-marketing/checkin-badge-printing): On-site QR code check-in and custom badge printing in under 2 seconds
+- [Registration & RSVP](https://eventx.io/event-management-marketing/registration-rsvp): Online event registration with 0% ticketing platform fees
+- [Virtual Event Platform](https://eventx.io/event-management-marketing/virtual-event-platform): Host engaging virtual events with live streaming, networking, and analytics
+- [Ticketing & Payment](https://eventx.io/event-management-marketing/ticketing-payment): Secure event ticketing and payment collection with 0% platform fees
+- [Event Website](https://eventx.io/event-management-marketing/event-website): Create branded event websites and mobile web apps with no code required
+- [Sponsors & Exhibitors Solutions](https://eventx.io/event-management-marketing/sponsors-exhibitors-solutions): Sponsor and exhibitor management to elevate event ROI
+- [Lead Capture](https://eventx.io/event-management-marketing/lead-capture): Seamless lead capture with QR scans, card OCR, and CRM integration
+- [Online Event Management](https://eventx.io/event-management-marketing/online-event-management-software): All-in-one event platform for planning, marketing, and execution
+
+## Use Cases
+
+- [Use Cases Overview](https://eventx.io/use-cases): Success stories from event organizers across APAC
+
+
+## Features
+
+- **Event Registration & RSVP**: Custom forms, multi-language, promo codes, real-time dashboard
+- **Check-in & Badge Printing**: QR code scanning, under 2 seconds per attendee, custom designs
+- **AI Lead Finder**: 200M+ verified contacts, AI content generation, multi-channel campaigns
+- **Ticketing & Payment**: 0% platform fees, multiple payment gateways, complex ticket types
+- **Event Website Builder**: No-code drag-and-drop, full brand control, mobile web apps
+- **Virtual Event Platform**: Live streaming, networking, analytics, virtual exhibition halls
+- **Sponsor & Exhibitor Management**: Lead retrieval, booth management, ROI tracking
+- **Lead Capture**: QR scans, business card OCR, CRM integrations
+- **WhatsApp Reminders**: Automated sequences, 95% attendance rate
+- **Check-in App**: iOS and Android, offline mode, real-time sync
+- **Email Marketing**: Drag-and-drop builder, automation sequences, UTM tracking
+- **Multi-Language**: Interface and communications in 5+ languages
+
+## FAQ
+
+- **What types of events does EventX support?** In-person, virtual, hybrid, trade shows, conferences, career fairs, webinars, exhibitions, corporate events, and more.
+- **How much does EventX cost?** Contact for pricing. 0% platform commission on ticket sales. Plans for events of all sizes.
+- **What languages does EventX support?** Interface and communications in English, Traditional Chinese, Simplified Chinese, and 5+ Asian languages.
+- **Is EventX secure?** ISO 27001 certified and GDPR compliant. Enterprise-grade data protection and encryption.
+- **Does EventX integrate with CRM tools?** Yes, including Salesforce, HubSpot, and API access for custom integrations.
+- **What kind of support does EventX offer?** Dedicated account management, multi-language support, and 24/7 technical support.
+- **How does EventX use AI?** AI Lead Finder for prospect discovery, AI content generation for personalized outreach, and AI business matching for sponsor-attendee networking.
+- **What is EventX's rating?** 4.8/5 from 6,802 reviews on G2.
+
+## Key Blog Articles
+
+- [Best Event Management Software Top 10](https://eventx.io/blog/best-event-management-software-top-10-the-ultimate-guide-for-2024): Ultimate guide comparing top event management platforms
+- [Event Management Platform Comparison](https://eventx.io/blog/event-management-platform-comparison): Side-by-side comparison of leading platforms
+- [Hybrid Events: The Complete Guide](https://eventx.io/blog/guide-hybrid-event): Comprehensive guide to planning hybrid events
+- [How to Plan a Successful Event in 6 Steps](https://eventx.io/blog/how-to-plan-a-successful-event-in-6-steps): Step-by-step event planning framework
+- [Event Marketing Strategies](https://eventx.io/blog/event-marketing-strategies): Proven strategies for promoting your event
+- [Virtual Event Platform vs In-Person: Which is Right?](https://eventx.io/blog/physical-event-vs-virtual-event): Comparing event formats for different goals
+- [7 Ideas for Virtual Events](https://eventx.io/blog/7-ideas-for-virtual-events): Creative virtual event concepts
+- [Event Check-in Systems: What They Are and Why You Need One](https://eventx.io/blog/event-check-in-systems-what-they-are-why-you-need-one): Guide to modern check-in technology
+- [How QR Code Check-in Systems Streamline Events](https://eventx.io/blog/how-qr-code-check-in-systems-streamline-events-2025-guide): QR check-in best practices
+- [AI Event Marketing: How to Use AI for Sponsorship](https://eventx.io/blog/ai-event-marketing-sponsorship-exhibition-companies): AI applications in event marketing
+- [Event Lead Generation Strategies](https://eventx.io/blog/event-lead-generation-strategies): Generate qualified leads from your events
+- [B2B Event Lead Generation](https://eventx.io/blog/b2b-event-lead-generation): B2B-specific lead generation tactics
+- [Best Hybrid Event Platforms Top 10](https://eventx.io/blog/best-hybrid-event-platform-top-10): Top hybrid event platforms compared
+- [Event Budget Planning Guide](https://eventx.io/blog/event-budget-planning-a-comprehensive-guide-for-organizers-and-companies): Comprehensive event budgeting
+- [Webinar Best Practices](https://eventx.io/blog/webinar-best-practices): Running effective webinars
+- [Event Planning Checklist](https://eventx.io/blog/event-planning-checklist): Essential checklist for event planners
+- [Virtual Trade Show Booths](https://eventx.io/blog/virtual-trade-show-booths): Designing effective virtual booths
+- [Measuring Event ROI](https://eventx.io/blog/measure-event-roi-metrics): Key metrics for event success
+- [HK Event Registration Guide](https://eventx.io/blog/hk-event-registration-key-for-success-in-2025): Hong Kong-specific event registration
+- [Event Technology Trends](https://eventx.io/blog/event-technology): Latest trends in event tech
+- [Blog](https://eventx.io/blog): All 387+ articles on event management, marketing, and technology
+
+## Optional
+
+- [Data Protection & Security](https://eventx.io/data-protection-and-security): Enterprise-grade security, compliance, and data handling
+- [WhatsApp Integration](https://eventx.io/whatsapp): Automated WhatsApp reminders boosting attendance rates to 95%
+- [Contact Us](https://eventx.io/contact-us): Multi-language support (5+ languages), China accessibility, ISO 27001 & GDPR compliance
+- [Sub-processor List](https://eventx.io/eventx-sub-processor): List of sub-processors used by EventX
