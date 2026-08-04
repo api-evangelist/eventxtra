@@ -2,7 +2,8 @@ generated: '2026-07-19'
 method: searched
 source: https://eventx.io/ (MCP Server section) + https://eventx.io/llms.txt
 name: EventX MCP Server
-status: hosted
+status: published
+status_raw: hosted
 description: >-
   EventX ships an official hosted (remote) MCP server that exposes an
   organization's live EventX data to MCP-compatible AI assistants in natural
