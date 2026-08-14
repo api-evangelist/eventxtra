@@ -11,30 +11,43 @@ description: >-
   offers an official hosted MCP server that lets AI assistants query live event
   data (registrations, sessions, ticket sales, attendance) in natural language,
   provisioned one-click from the EventX dashboard and compatible with Claude,
-  ChatGPT, Cursor, and OpenCode. Added to the API Evangelist network as a
-  portfolio company of 500 Global and enriched via the pipeline.
+  ChatGPT, Cursor, and OpenCode. EventX publishes a REST Public API documented as
+  an OpenAPI 3.2.0 contract (46 paths, 58 operations) at esaas-api.eventx.io,
+  covering events, attendees, custom fields, ticket classes, orders, invoices,
+  media, registration forms and outreach, plus a per-event webhook subscription
+  API delivering five attendee lifecycle actions. Added to the API Evangelist
+  network as a portfolio company of 500 Global and enriched via the pipeline.
 url: https://raw.githubusercontent.com/api-evangelist/eventxtra/refs/heads/main/apis.yml
 accessModel:
-  pricing: unknown
-  onboarding: unknown
-  trial: false
+  pricing: published
+  onboarding: self-service-signup
+  trial: true
   try_now: false
   public: false
-  label: Unknown
-  confidence: low
-  source: []
-  generated: '2026-07-22'
-  method: derived
+  label: Public documentation, gated credentials
+  confidence: high
+  note: >-
+    The OpenAPI and the full API reference are anonymously readable, and the
+    platform itself has a free self-service tier. The apiToken that POST
+    /public-api/v1/auth requires is listed on the pricing page as an
+    Enterprise-plan-only entitlement, so no self-service developer can obtain API
+    credentials.
+  source:
+  - https://eventx.io/pricing
+  - https://eventx-hq.gitbook.io/knowledge-base/api-doc/auth
+  - https://esaas-api.eventx.io/api-docs/public-api/openApi.json
+  generated: '2026-08-13'
+  method: searched
 image: https://eventx.io/images/og/index-b41677e1.png
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - 500-global
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: enriched
+x-tier-reason: published-openapi-and-webhook-surface
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-19'
+modified: '2026-08-13'
 tags:
 - Company
 - Event Management
@@ -43,15 +56,62 @@ tags:
 - Check-in
 - Event Marketing
 - Virtual Events
+- Webhooks
+- OpenAPI
 - MCP
 - AI
-apis: []
+- Hong Kong
+- APAC
+apis:
+- name: EventX Public API
+  description: >-
+    The EventX Public API is a REST interface over the EventX event management
+    platform, published as an OpenAPI 3.2.0 document with 46 paths and 58
+    operations across Auth, Event, Attendee, Custom Field, Event Webhook, Order,
+    Outreach, Ticket Class, Invoice, Media, Registration Form, Registration
+    Service, Registration Order, Salesforce and organization-scoped custom
+    domains. Authentication is an apiToken-for-JWT exchange (POST
+    /public-api/v1/auth) with the resulting bearer token sent in an Authorization
+    header. Listing operations share a page/pageSize envelope with a
+    { dataList, pagination } response, and a per-event webhook subscription API
+    delivers five attendee lifecycle actions. The specification and the reference
+    documentation are anonymously readable; the apiToken itself is an
+    Enterprise-plan entitlement.
+  humanURL: https://eventx-hq.gitbook.io/knowledge-base/api-doc/auth
+  baseURL: https://esaas-api.eventx.io
+  image: https://eventx.io/images/og/index-b41677e1.png
+  tags:
+  - Event Management
+  - Event Registration
+  - Ticketing
+  - Check-in
+  - Attendees
+  - Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/eventxtra-public-api-openapi.json
+  - type: Documentation
+    url: https://eventx-hq.gitbook.io/knowledge-base/api-doc/auth
+  - type: APIReference
+    url: https://eventx-hq.gitbook.io/knowledge-base/api-doc/public-api
+  - type: Authentication
+    url: authentication/eventxtra-authentication.yml
+  - type: Webhooks
+    url: asyncapi/eventxtra-webhooks.yml
+  - type: Overlay
+    url: overlays/eventxtra-public-api-overlay.yaml
+  - type: ToolCrosswalk
+    url: mcp/eventxtra-tool-crosswalk.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: AgenticAccess
+  url: agentic-access/eventxtra-agentic-access.yml
+- type: Authentication
+  url: authentication/eventxtra-authentication.yml
 - type: Website
   url: https://eventx.io
 - type: Documentation
@@ -84,8 +144,49 @@ common:
   url: security/eventxtra-trust-center.yml
 - type: DomainSecurity
   url: security/eventxtra-domain-security.yml
+- type: APIReference
+  url: https://eventx-hq.gitbook.io/knowledge-base/api-doc/auth
+- type: GettingStarted
+  url: https://eventx-hq.gitbook.io/knowledge-base
+- type: SignUp
+  url: https://portal.eventx.io/signup
+- type: StatusPage
+  url: https://status.eventx.io/
+- type: OpenAPI
+  url: openapi/eventxtra-public-api-openapi.json
+- type: Webhooks
+  url: asyncapi/eventxtra-webhooks.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: ToolCrosswalk
+  url: mcp/eventxtra-tool-crosswalk.yml
+- type: Conventions
+  url: conventions/eventxtra-conventions.yml
+- type: ErrorCatalog
+  url: errors/eventxtra-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/eventxtra-lifecycle.yml
+- type: DataModel
+  url: data-model/eventxtra-data-model.yml
+- type: Overlay
+  url: overlays/eventxtra-public-api-overlay.yaml
+- type: Packages
+  url: packages/eventxtra-packages.yml
+- type: Plans
+  url: plans/eventxtra-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/eventxtra-rate-limits.yml
+- type: LLMsTxt
+  url: llms/eventxtra-knowledge-base-llms.txt
+  name: EventX Knowledge Base llms.txt
 x-enrichment:
-  date: '2026-07-19'
-  status: backfilled
+  date: '2026-08-13'
+  status: enriched
+  artifacts_added: 21
+  artifacts_updated: 4
   pass: local-v1
-  note: backfilled from .gitignore signal + verified work evidence
+  note: >-
+    Round 2 found the machine-readable contract round 1 missed. The EventX
+    OpenAPI 3.2.0 is served at https://esaas-api.eventx.io/api-docs/public-api/openApi.json,
+    linked only from the GitBook knowledge base at eventx-hq.gitbook.io (the
+    marketing site has no developer section and its sitemap names no API page).
