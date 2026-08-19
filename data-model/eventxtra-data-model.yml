@@ -1,0 +1,104 @@
+generated: '2026-08-13'
+method: derived
+source: openapi/eventxtra-public-api-openapi.json
+docs: https://eventx-hq.gitbook.io/knowledge-base/api-doc/models
+note: >-
+  Derived from the published OpenAPI 3.2.0. The spec defines NO
+  components.schemas — every request and response body is inlined per operation —
+  so the entity graph below is reconstructed from path structure and from the
+  id-reference fields that appear inside those inline schemas. Relationships are
+  named from real field names present in the spec; none are invented.
+id_format: uuid (every id field is declared type string, format uuid)
+root_scope:
+  organization: >-
+    Organizations own custom domains (/public-api/v1/org/{orgId}/...) and appear
+    as organizationId on events. There is no organization CRUD in the public
+    contract — the org is the tenant boundary you authenticate into.
+  event: >-
+    Event is the primary scope. 43 of 58 operations are nested under
+    /public-api/v1/event/{eventId}/, so almost every other entity is
+    event-scoped.
+entities:
+- name: Organization
+  key: orgId
+  operations: [listCustomDomains, createCustomDomain, getCustomDomainDetail, updateCustomDomain, deleteCustomDomain, verifyCustomDomain, listPathMappings, createPathMapping, updatePathMapping, deletePathMapping]
+- name: Event
+  key: eventId
+  operations: [getPaginatedEvent, getPaginatedHostingEvent, createEvent, getEventById, updateEventById, deleteEventById, patchEventExtensionDataById]
+  notes: >-
+    Carries format (virtual/in-person/hybrid), entryType (public/by_invite_only),
+    defaultLocale + supportedLocales (en, ja, ko, vi, zh-HK, zh-CN, es, th, pt),
+    a locationLatLng object, and a free-form extensionData map. deleteEventById
+    is a SOFT delete.
+- name: Attendee
+  key: attendeeId
+  operations: [getPaginatedAttendeeByEventId, getAttendeeById, patchAttendeeById, bulkUpsertAttendeeByEventId, bulkRemoveAttendeeByEventId, bulkDeleteAttendeeByEventId, getAttendeeByCheckInQRCodeToken, getAttendeeByShortCode, patchAttendeeTicketByAttendeeId]
+  alternate_keys: [qrCodeToken, shortCode]
+- name: AttendeeTag
+  operations: [getAllAttendeeTagByEventId]
+- name: CustomField
+  operations: [getAllCustomFieldByEventId, bulkUpsertCustomFieldByEventId]
+  notes: The event question library; custom field answers hang off Attendee.
+- name: TicketClass
+  key: ticketClassId
+  operations: [getAllTicketClassByEventId, createTicketClass]
+- name: TicketClassAddOn
+  key: ticketClassAddOnId
+  operations: [getAllTicketClassAddOnByEventId]
+- name: Order
+  key: orderId
+  operations: [getPaginatedOrderByEventId, getOrderById, createOrder, getOrderStatus, getOrderQuotation]
+- name: Invoice
+  key: invoiceId
+  operations: [invoiceDetails, getOneOrderInvoice]
+- name: RegistrationForm
+  key: eventRegFormId
+  operations: [createRegForm, getRegFormByEventIdAndId, getPaymentConfigByEventId]
+- name: Webhook
+  key: webhookId
+  operations: [getAllEventWebhook, createEventWebhook, patchEventWebhookById, deleteEventWebhookById]
+- name: Media
+  key: mediaId
+  operations: [createMedia, markMediaAsUploaded, getOneMedia, removeOneMedia]
+  notes: Two-phase upload — createMedia returns an upload URL, then markMediaAsUploaded commits it.
+- name: EmailTemplate
+  key: emailTemplateType
+  operations: [upsertEmailTemplateByType, sendTestConfirmationEmailByEventId, bulkSendConfirmationEmailByEventId, sendManualEmailByEventId]
+- name: CustomDomain
+  key: customDomainId
+  operations: [listCustomDomains, createCustomDomain, getCustomDomainDetail, updateCustomDomain, deleteCustomDomain, verifyCustomDomain]
+  notes: Provisioned via Cloudflare; DNS/SSL verification is a separate triggerable step.
+- name: PathMapping
+  key: pathMappingId
+  operations: [listPathMappings, createPathMapping, updatePathMapping, deletePathMapping]
+- name: SalesforceAccount
+  operations: [getSalesforceAccount]
+relationships:
+- {from: Event, to: Organization, type: belongs_to, via: organizationId}
+- {from: Event, to: Attendee, type: has_many, via: 'path scope /event/{eventId}/attendee'}
+- {from: Event, to: TicketClass, type: has_many, via: 'path scope /event/{eventId}/ticket-class'}
+- {from: Event, to: Order, type: has_many, via: 'path scope /event/{eventId}/order'}
+- {from: Event, to: Webhook, type: has_many, via: 'path scope /event/{eventId}/webhook'}
+- {from: Event, to: CustomField, type: has_many, via: 'path scope /event/{eventId}/custom-field'}
+- {from: Event, to: RegistrationForm, type: has_many, via: eventRegFormId}
+- {from: Event, to: Media, type: has_many, via: 'logoImageMediaId, bannerImageMediaId, faviconImageMediaId, ogImageMediaId'}
+- {from: Attendee, to: TicketClass, type: belongs_to, via: ticketClassId}
+- {from: Attendee, to: TicketClassAddOn, type: has_many, via: addOnIds}
+- {from: Attendee, to: Order, type: belongs_to, via: orderId}
+- {from: Attendee, to: Attendee, type: belongs_to, via: associatedAttendeeId}
+- {from: Attendee, to: Session, type: has_many, via: 'accessiblePhysicalSessionIds, accessibleWebinarSessionIds'}
+- {from: Order, to: TicketClass, type: has_many, via: ticketClassIds}
+- {from: Order, to: Attendee, type: has_many, via: attendeeIds}
+- {from: Order, to: Invoice, type: has_one, via: 'offlinePaymentInvoiceId / getOneOrderInvoice'}
+- {from: Order, to: StripeAccount, type: references, via: 'stripeAccountId, stripeId'}
+- {from: TicketClass, to: TicketClassAddOn, type: has_many, via: ticketClassAddOnId}
+- {from: CustomDomain, to: Organization, type: belongs_to, via: orgId}
+- {from: CustomDomain, to: PathMapping, type: has_many, via: 'path scope /custom-domains/{customDomainId}/path-mappings'}
+- {from: PathMapping, to: Event, type: belongs_to, via: eventId}
+- {from: PathMapping, to: RegistrationForm, type: belongs_to, via: eventRegFormId}
+- {from: CustomField, to: CustomField, type: references, via: 'targetQuestionId (conditional logic)'}
+- {from: CustomField, to: QuestionOption, type: has_many, via: questionOptionId}
+external_systems:
+- {system: Stripe, via: 'stripeAccountId / stripeId on payment configuration and orders'}
+- {system: Cloudflare, via: 'createCustomDomain — Create a custom domain via Cloudflare'}
+- {system: Salesforce, via: getSalesforceAccount}

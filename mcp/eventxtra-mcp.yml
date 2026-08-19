@@ -4,12 +4,10 @@ source: https://eventx.io/ (MCP Server section) + https://eventx.io/llms.txt
 name: EventX MCP Server
 status: published
 status_raw: hosted
-description: >-
-  EventX ships an official hosted (remote) MCP server that exposes an
-  organization's live EventX data to MCP-compatible AI assistants in natural
-  language, without SQL or API knowledge. It is provisioned one-click from the
-  EventX dashboard (no servers to run, deploy, or maintain) and returns
-  always-up-to-date answers from live EventX event data.
+description: EventX ships an official hosted (remote) MCP server that exposes an organization's live EventX
+  data to MCP-compatible AI assistants in natural language, without SQL or API knowledge. It is provisioned
+  one-click from the EventX dashboard (no servers to run, deploy, or maintain) and returns always-up-to-date
+  answers from live EventX event data.
 provisioning: One-click enable from the EventX dashboard; no self-hosting.
 transport: sse
 authentication: Per-tenant, provisioned/scoped from the EventX dashboard (not a static public endpoint).
@@ -20,9 +18,6 @@ clients:
 - Cursor
 - OpenCode
 - Any MCP-compatible client
-# Documented natural-language query capabilities (not published as discrete tool
-# schemas by the vendor). Captured verbatim from the vendor's description of what
-# the server can answer over live EventX data; NOT invented operationIds.
 capabilities:
 - area: registrations
   description: Query registration lists and registration trends over time.
@@ -32,7 +27,10 @@ capabilities:
   description: Query ticket sales and revenue.
 - area: attendance
   description: Query attendee lists and on-site check-in / attendance figures.
-notes: >-
-  No public/static MCP server URL or discrete tool JSON schema is published; the
-  endpoint is dashboard-provisioned per organization. Capabilities above are the
-  vendor-documented query areas, not fabricated tool definitions.
+notes: No public/static MCP server URL or discrete tool JSON schema is published; the endpoint is dashboard-provisioned
+  per organization. Capabilities above are the vendor-documented query areas, not fabricated tool definitions.
+deployment:
+  mode: remote
+  verified: searched
+  checked: '2026-08-12'
+  source: catalog MCP census

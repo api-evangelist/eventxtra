@@ -1,0 +1,99 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the EventX Public API
+  version: 1.0.0
+extends: openapi/eventxtra-public-api-openapi.json
+x-provenance:
+  generated: '2026-08-13'
+  method: generated
+  source: >-
+    Derived from openapi/eventxtra-public-api-openapi.json as harvested verbatim
+    from https://esaas-api.eventx.io/api-docs/public-api/openApi.json on
+    2026-08-13. The original spec is never mutated; every enhancement below is
+    expressed as an Overlay action.
+actions:
+- target: $.info
+  description: Identify the provider and where the contract was harvested from.
+  update:
+    x-provider: EventX (EventXtra Limited)
+    x-provider-slug: eventxtra
+    x-spec-source: https://esaas-api.eventx.io/api-docs/public-api/openApi.json
+    x-docs: https://eventx-hq.gitbook.io/knowledge-base/api-doc/auth
+    x-harvested: '2026-08-13'
+    contact:
+      name: EventX Support
+      url: https://eventx.io/contact-us
+    termsOfService: https://eventx.io/terms-of-service
+- target: $.info
+  description: >-
+    Record the access gate. The spec is anonymously readable but the apiToken
+    that issueJwt consumes is an Enterprise-plan entitlement.
+  update:
+    x-access:
+      public_documentation: true
+      credentials_gate: enterprise-plan
+      pricing: https://eventx.io/pricing
+- target: $
+  description: >-
+    Add a root-level default security requirement. bearerAuth is applied
+    per-operation on 47 of the 58 operations, but the ten organization-scoped
+    custom-domain and path-mapping operations declare no `security` at all, which
+    reads as "no credential required" for a tenant-scoped management surface.
+    Setting the root default closes that hole; issueJwt overrides it below.
+  update:
+    security:
+    - bearerAuth: []
+- target: $.paths['/public-api/v1/auth'].post
+  description: >-
+    The token-issuing operation is the one call that must NOT carry a bearer
+    token — it consumes an apiToken in the request body. It already omits
+    `security`; this pins it explicitly now that a root default exists.
+  update:
+    security: []
+- target: $
+  description: >-
+    Declare the tag set. Operations carry tags but the document has an empty
+    top-level tags[] array, so no tag descriptions reach a docs renderer. The
+    twelve custom-domain and path-mapping operations carry no tags at all.
+  update:
+    tags:
+    - {name: Auth, description: Exchange an EventX apiToken for a short-lived bearer JWT.}
+    - {name: Event, description: Create, read, update and soft-delete events, and merge free-form extensionData.}
+    - {name: Attendee, description: Attendee CRUD, bulk upsert/remove/delete, and lookup by QR code token or short code.}
+    - {name: Custom Field, description: The per-event question library used to define custom registration fields.}
+    - {name: Event Webhook, description: Manage per-event webhook subscriptions for attendee lifecycle actions.}
+    - {name: Order, description: Read ticketing orders placed against an event.}
+    - {name: Outreach, description: Confirmation email, SMS and WhatsApp sends, plus email template management.}
+    - {name: Ticket Class, description: Ticket classes and ticket class add-ons for an event.}
+    - {name: Invoice, description: Invoice details for a user or an order.}
+    - {name: Media, description: Two-phase media upload — create a record, receive an upload URL, then mark it uploaded.}
+    - {name: Registration Form, description: Create and read registration forms with their tickets and fields.}
+    - {name: Registration Service, description: Public registration-side reads — payment configuration and rendered registration forms.}
+    - {name: Registration Order, description: Public registration-side order creation, quotation and status.}
+    - {name: Salesforce, description: Read the linked Salesforce account.}
+    - {name: Custom Domain, description: Organization-scoped custom domains provisioned through Cloudflare, and their path mappings.}
+- target: $.info
+  description: >-
+    Record the error-envelope and the gap in declared failure responses, so a
+    consumer knows the contract's 500-only failure model is a documentation gap
+    rather than the API's real behaviour.
+  update:
+    x-error-envelope:
+      shape: '{ error: { code, message, status, meta } }'
+      rfc9457: false
+      catalog: errors/eventxtra-problem-types.yml
+    x-undeclared-status-codes: [400, 401, 403, 404, 409, 422, 429]
+- target: $.info
+  description: Cross-link the derived API Evangelist artifacts for this provider.
+  update:
+    x-apievangelist:
+      conventions: conventions/eventxtra-conventions.yml
+      errors: errors/eventxtra-problem-types.yml
+      authentication: authentication/eventxtra-authentication.yml
+      lifecycle: lifecycle/eventxtra-lifecycle.yml
+      data_model: data-model/eventxtra-data-model.yml
+      webhooks: asyncapi/eventxtra-webhooks.yml
+      rate_limits: rate-limits/eventxtra-rate-limits.yml
+      plans: plans/eventxtra-plans-pricing.yml
+      skills: skills/_index.yml
+      agentic_access: agentic-access/eventxtra-agentic-access.yml

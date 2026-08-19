@@ -1,0 +1,109 @@
+generated: '2026-08-13'
+method: searched
+source: https://eventx.io/pricing
+docs: https://eventx.io/pricing
+currency: USD
+plan_count: 4
+billing_periods: [monthly, annual, one-time]
+api_access_gate:
+  public_api: enterprise-only
+  note: >-
+    "Public API" is listed as an Enterprise-plan capability only. The API
+    documentation and the OpenAPI are anonymously readable, but the apiToken
+    required by POST /public-api/v1/auth is only obtainable under an Enterprise
+    contract. CRM Integration, SSO SAML, custom SMTP, audit trails and private
+    cloud sit in the same Enterprise tier.
+plans:
+- name: Free
+  price: 0
+  currency: USD
+  period: month
+  cta: Register for Free
+  included:
+    events: unlimited
+    attendees_per_event: 30
+    users: 1
+  features:
+  - Tickets & Registration Form
+  - Check-in & Badge Printing
+  - Check-in Mobile App
+  - Agenda & Session Management
+  - Event Landing Page
+  - Multiple Languages
+  - Built-in RSVP & Reminders
+  - Drag & Drop Email Builder
+  - Basic Event Analytics
+  api_access: false
+- name: Essentials
+  price: 99
+  list_price: 149
+  currency: USD
+  period: month
+  billing_note: '$99/month on annual billing, $149/month monthly — the page advertises save up to 34% on annual.'
+  cta: Register for Free
+  recommended: true
+  included:
+    attendees_per_event: 300
+    users: 1
+    email_credits_per_month: 5000
+  overage:
+    ticketing_platform_fee: 5%
+  features:
+  - Everything in Free
+  - Single Session Check-in
+  - Ticketing & Payment
+  - Collect Payment Online & Offline
+  api_access: false
+- name: Enterprise
+  price: custom
+  currency: USD
+  period: month
+  cta: Contact Us
+  included:
+    attendees_per_event: unlimited
+    users: unlimited
+  overage:
+    ticketing_platform_fee: 0%
+  features:
+  - Everything in Essentials
+  - Multiple Session Check-in
+  - Live Streaming (Zoom Integration)
+  - Virtual Event (Booth)
+  - Lead Capture
+  - Dedicated Account Manager
+  - Customer Success & Support Group
+  - Custom Contracts, Terms & DPA
+  - Audit Trails & Logs
+  - Custom Email Sender / SMTP
+  - SSO SAML
+  - Remove EventX Branding
+  - CRM Integration
+  - Public API
+  - Private Cloud
+  api_access: true
+- name: One Off Event
+  price: 1499
+  currency: USD
+  period: one-time
+  cta: Register for Free
+  included:
+    events: 1
+    attendees: 500
+    users: 1
+    duration: 3 months
+  features:
+  - Tickets & Registration Form
+  - Check-in & Badge Printing
+  - Check-in Mobile App
+  - Basic Event Analytics
+  api_access: false
+add_ons:
+- {name: Hardware Rental, availability: Enterprise plan only, description: 'Badge printers, check-in devices (QR scanners), event-in-a-box'}
+- {name: Badge Production, availability: Enterprise plan only, description: Full-service badge printing with lanyards, holders and eco-friendly materials}
+- {name: Onsite Support, availability: Enterprise plan only, description: On-site check-in, tech setup, troubleshooting and real-time coordination}
+- {name: WhatsApp Notification, availability: Enterprise plan only, description: Confirmations, reminders and updates via WhatsApp}
+- {name: Event Web App, availability: Enterprise plan only, description: Agenda, Q&A, polling and meet-up setting}
+- {name: SMTP / Email Sender, availability: Enterprise plan only, description: Scalable deliverability integrated with existing systems}
+commercial_notes:
+- '0% ticketing platform fee on Enterprise; 5% on Essentials.'
+- 'Lowest Price Guarantee: EventX will match a competitor quotation, reviewed within 1 business day; EventX reserves the final decision.'

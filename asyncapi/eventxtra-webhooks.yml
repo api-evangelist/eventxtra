@@ -1,0 +1,109 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://eventx-hq.gitbook.io/knowledge-base/api-doc/event-webhook +
+  openapi/eventxtra-public-api-openapi.json
+spec_type: Webhooks
+asyncapi_published: false
+asyncapi_note: >-
+  EventX publishes no AsyncAPI document. It ships a real, documented webhook
+  surface with a managed subscription API, captured here. Nothing is fabricated:
+  the action list below is the enum in the published OpenAPI request body, and
+  the payload is the example EventX prints in its own webhook documentation.
+surface:
+  name: EventX Event Webhooks
+  scope: per-event (subscriptions are created against a specific eventId)
+  managed_by_api: true
+  docs: https://eventx-hq.gitbook.io/knowledge-base/api-doc/event-webhook
+subscription_api:
+  base_url: https://esaas-api.eventx.io
+  operations:
+  - operationId: getAllEventWebhook
+    method: GET
+    path: '/public-api/v1/event/{eventId}/webhook/all'
+    summary: List all webhooks for an event
+  - operationId: createEventWebhook
+    method: POST
+    path: '/public-api/v1/event/{eventId}/webhook'
+    summary: Create a webhook subscription for an event
+  - operationId: patchEventWebhookById
+    method: PATCH
+    path: '/public-api/v1/event/{eventId}/webhook/{webhookId}'
+    summary: Partially update a webhook
+  - operationId: deleteEventWebhookById
+    method: DELETE
+    path: '/public-api/v1/event/{eventId}/webhook/{webhookId}'
+    summary: Permanently delete a webhook (hard delete)
+delivery:
+  transport: http
+  method: POST
+  target: subscriber-supplied endpoint_url
+  content_type: application/json
+  acknowledgement: 'Your server must respond with any 2xx status to acknowledge receipt.'
+  retry_policy: not documented
+  signing: not documented
+  note: >-
+    EventX documents no payload signature, shared secret, or timestamp header for
+    webhook verification, and no retry/backoff behaviour. A consumer cannot
+    cryptographically verify that a delivery originated from EventX.
+events:
+- action: attendee-create
+  description: An attendee was created on the event.
+- action: attendee-update
+  description: An attendee record was updated.
+- action: attendee-delete
+  description: An attendee was deleted from the event.
+- action: attendee-check-in
+  description: An attendee checked in on site.
+- action: attendee-check-out
+  description: An attendee checked out.
+event_source: >-
+  Verbatim enum from the createEventWebhook request body in
+  openapi/eventxtra-public-api-openapi.json.
+payload:
+  envelope_fields:
+  - {name: config.event_id, type: uuid, description: the EventX event the delivery belongs to}
+  - {name: config.webhook_id, type: uuid, description: the subscription that produced the delivery}
+  - {name: config.action, type: string, description: one of the five actions above}
+  - {name: config.endpoint_url, type: url, description: the subscriber URL the delivery was sent to}
+  - {name: attendee, type: object, description: the full attendee record the action applies to}
+  attendee_fields:
+  - id
+  - first_name
+  - last_name
+  - firstName
+  - lastName
+  - name
+  - email
+  - registration_status
+  - virtual_attendance_status
+  - first_entered_web_app_at
+  - magic_link_url
+  - attendance_type
+  - role_tags
+  - ticket_class_id
+  - ticket_class_name
+  - job_title
+  - organization
+  - city
+  - country
+  - area_code
+  - contact_no
+  - source
+  - created_at
+  - update_at
+  - attended_at
+  - registered_at
+  - checked_in_at
+  - custom_fields
+  - check_in_method
+  note: >-
+    The attendee object carries both snake_case and camelCase spellings of the
+    name fields (first_name AND firstName), and the updated timestamp is spelled
+    update_at, not updated_at. Both are quirks of the published payload, recorded
+    as-is rather than normalised.
+integration_note: >-
+  EventX markets this webhook surface as the path to "1000+ app integrations"
+  via Zapier and as the CRM sync mechanism for Salesforce, HubSpot and Marketo.
+  Source: https://eventx.io/llms.txt and
+  https://eventx-hq.gitbook.io/knowledge-base/event-setting/integrations-and-channels/integration-of-eventx-with-1000-apps-with-webhook

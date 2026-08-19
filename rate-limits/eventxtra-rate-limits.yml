@@ -1,0 +1,50 @@
+generated: '2026-08-13'
+method: searched
+source: https://eventx-hq.gitbook.io/knowledge-base/event-setting/event-configuration/rate-limit-for-each-event
+docs: https://eventx-hq.gitbook.io/knowledge-base/event-setting/event-configuration/rate-limit-for-each-event
+api: EventX Public API
+limit_count: 2
+api_limits_documented: false
+note: >-
+  IMPORTANT SCOPE: the two limits below are published for EventX-hosted PUBLIC
+  EVENT PAGES (the event landing page and the event registration page), not for
+  the Public API at esaas-api.eventx.io. EventX documents NO rate limit for the
+  Public API — the OpenAPI declares no 429 response and no rate-limit headers,
+  and the API documentation never mentions throttling. They are recorded here
+  because they are real, published, and they throttle the registration surface an
+  agent or integration would drive traffic to.
+limits:
+- scope: per-client-ip
+  applies_to: EventX-hosted public event pages (landing + registration)
+  limit: 300
+  window: 1 minute
+  window_type: rolling
+  approximate: true
+  description: Each client IP address is limited to approximately 300 requests per 1-minute rolling window across all requests.
+- scope: per-uri-path
+  applies_to: EventX-hosted public event pages (landing + registration)
+  limit: 350
+  window: 5 minutes
+  window_type: rolling
+  approximate: true
+  shared_across_ips: true
+  description: >-
+    Each eligible event URI path is limited to approximately 350 requests per
+    5-minute rolling window, shared across all IP addresses. Applied per complete
+    URI path, not per event ID — /events/{event-id} and
+    /events/{event-id}/register have separate counters.
+exhaustion_behaviour:
+  surface: EventX-hosted public event pages
+  response: A rate-limit interstitial page with a countdown timer to the next allowed refresh.
+  status_code: not documented
+  headers: not documented
+  unaffected: The organizer portal is not affected by these limits.
+response_headers:
+  documented: false
+  x_ratelimit: null
+  ratelimit: null
+  retry_after: null
+  note: >-
+    No X-RateLimit-*, RateLimit-* or Retry-After header is documented for either
+    the event pages or the Public API. A client cannot read its remaining budget
+    from a response; it can only observe the interstitial.

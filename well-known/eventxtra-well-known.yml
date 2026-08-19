@@ -1,0 +1,65 @@
+generated: '2026-08-13'
+method: probed
+source: live GET of /.well-known/* on every EventX host in apis.yml + the OpenAPI servers[] host
+result: no-hit
+note: >-
+  Every /.well-known/ path probed on every EventX host missed. eventx.io returns
+  a 404 HTML page; esaas-api.eventx.io (the OpenAPI servers[] host) returns a
+  clean text/plain 404 "Not Found" for every path. help.eventx.io (GitBook) and
+  portal.eventx.io (the organizer SPA) answer HTTP 200 with an HTML application
+  shell for EVERY /.well-known/* path, including paths that cannot exist — these
+  are catch-all false positives, not served documents, and are recorded as
+  misses. No WellKnown, SecurityTxt or AgentCard pointer is emitted, because
+  EventX does not serve any of these documents.
+hosts:
+- host: https://eventx.io
+  kind: website
+  catch_all_200: false
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/oauth-protected-resource, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+- host: https://esaas-api.eventx.io
+  kind: api
+  catch_all_200: false
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/oauth-protected-resource, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+- host: https://help.eventx.io
+  kind: documentation
+  catch_all_200: true
+  note: GitBook application shell answers 200 with HTML for every path; treated as a miss.
+  documents:
+  - {path: /.well-known/security.txt, status: 200, content: html-shell, document: false}
+  - {path: /.well-known/openid-configuration, status: 200, content: html-shell, document: false}
+  - {path: /.well-known/oauth-authorization-server, status: 200, content: html-shell, document: false}
+  - {path: /.well-known/oauth-protected-resource, status: 200, content: html-shell, document: false}
+  - {path: /.well-known/api-catalog, status: 200, content: html-shell, document: false}
+  - {path: /.well-known/ai-plugin.json, status: 200, content: html-shell, document: false}
+  - {path: /.well-known/agent-card.json, status: 200, content: html-shell, document: false}
+  - {path: /.well-known/agent.json, status: 200, content: html-shell, document: false}
+- host: https://portal.eventx.io
+  kind: application
+  catch_all_200: true
+  note: Organizer portal SPA answers 200 with HTML for every path; treated as a miss.
+  documents:
+  - {path: /.well-known/security.txt, status: 200, content: html-shell, document: false}
+  - {path: /.well-known/openid-configuration, status: 200, content: html-shell, document: false}
+  - {path: /.well-known/oauth-authorization-server, status: 200, content: html-shell, document: false}
+  - {path: /.well-known/oauth-protected-resource, status: 200, content: html-shell, document: false}
+  - {path: /.well-known/api-catalog, status: 200, content: html-shell, document: false}
+  - {path: /.well-known/ai-plugin.json, status: 200, content: html-shell, document: false}
+  - {path: /.well-known/agent-card.json, status: 200, content: html-shell, document: false}
+  - {path: /.well-known/agent.json, status: 200, content: html-shell, document: false}
+documents_found: 0

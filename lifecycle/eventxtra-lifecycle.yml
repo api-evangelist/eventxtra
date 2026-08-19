@@ -1,0 +1,50 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://status.eventx.io/ + https://eventx-hq.gitbook.io/knowledge-base/api-doc/auth +
+  openapi/eventxtra-public-api-openapi.json + https://eventx.io/terms-of-service
+versioning:
+  scheme: uri-path
+  current: v1
+  declared_version: beta
+  docs: https://eventx-hq.gitbook.io/knowledge-base/api-doc/public-api
+  note: >-
+    Paths are prefixed /public-api/v1/ while the published OpenAPI declares
+    info.version "beta". EventX publishes no written policy on how v1 will change
+    or how a v2 would be introduced.
+deprecation:
+  policy_url: null
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  note: >-
+    No deprecation or sunset policy is published, and no RFC 8594 Sunset /
+    Deprecation header support is documented. No Deprecation pointer is emitted.
+deprecated_operations: []
+sla:
+  url: null
+  uptime_target: null
+  note: >-
+    No public SLA or uptime target. The pricing page attaches "Customer Success &
+    Support Group" and a dedicated account manager to the Enterprise plan, and
+    custom contracts/DPA are Enterprise-only — any availability commitment is
+    contractual, not published.
+status_page:
+  url: https://status.eventx.io/
+  provider: UptimeRobot
+  http_status: 200
+  features: [90-day uptime history, 24h/7d/30d/90d uptime rollups, status update history, email subscribe]
+  checked: '2026-08-13'
+changelog:
+  url: null
+  published: false
+  note: >-
+    No dated API changelog or release-notes page was found on eventx.io, the
+    GitBook knowledge base, or the eventxtra GitHub organization. No ChangeLog
+    artifact is written.
+availability:
+  api_access_gate: >-
+    The pricing page lists "Public API" as an ENTERPRISE-plan-only capability.
+    The documentation and OpenAPI are fully public and anonymous, but obtaining
+    the apiToken that issueJwt requires needs an Enterprise contract.
+  source: https://eventx.io/pricing

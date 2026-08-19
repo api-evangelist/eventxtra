@@ -1,0 +1,70 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  npm registry search (text=eventx, text=eventxtra, scope:eventx), PyPI, RubyGems,
+  the github.com/eventxtra organization repository list, and the EventX API
+  documentation at https://eventx-hq.gitbook.io/knowledge-base/api-doc/auth
+api_client_package_count: 0
+note: >-
+  EventX publishes NO first-party API client library for its Public API on any
+  registry. The API documentation is HTTP-only (issue a JWT at POST
+  /public-api/v1/auth, then send it as an Authorization header) and names no SDK.
+  The site llms.txt claims "SDK support for building custom check-in
+  applications", but no such SDK is published to npm, PyPI, RubyGems, Packagist,
+  crates.io, NuGet, Maven Central or pkg.go.dev, and none is linked from the API
+  docs — recorded as an unsubstantiated marketing claim rather than a package.
+  The one package below is published under EventX's own npm scope and is
+  genuinely first-party, but it is an internal HTTP utility (a fork of
+  await-busboy), not a client for the EventX API — so no SDKs pointer is emitted.
+packages:
+- language: javascript
+  registry: npm
+  name: "@eventx/await-busboy"
+  url: https://www.npmjs.com/package/@eventx/await-busboy
+  install: npm install @eventx/await-busboy
+  official: true
+  api_client: false
+  version: 1.0.4
+  published: '2022-06-21'
+  source_code: https://github.com/eventxtra/await-busboy
+  note: >-
+    First-party by publisher (EventX's own @eventx npm scope, source in the
+    eventxtra GitHub org) but it is an awaitable busboy multipart parser used
+    internally, not an EventX API client. Last published 2022-06-21 — four years
+    stale, and it predates the Public API documented here.
+registries_checked:
+- registry: npm
+  query: 'text=eventx / text=eventxtra / scope:eventx'
+  api_clients_found: 0
+  note: Only @eventx/await-busboy is published by EventX; every other hit is unrelated.
+- registry: pypi
+  query: eventx
+  status: 200
+  api_clients_found: 0
+  note: Unrelated third-party project by Anzize Daouda (event-driven messaging via exceptions).
+- {registry: pypi, query: eventxtra, status: 404, api_clients_found: 0}
+- {registry: rubygems, query: eventx, status: 404, api_clients_found: 0}
+- {registry: rubygems, query: eventxtra, status: 404, api_clients_found: 0}
+- registry: packagist
+  query: eventx
+  api_clients_found: 0
+  note: 5,311 generic "event" matches, none published by EventX.
+- registry: crates.io
+  query: eventx
+  api_clients_found: 0
+  note: One unrelated crate (vuinputd).
+- registry: nuget
+  query: eventx
+  api_clients_found: 0
+  note: >-
+    A package literally named "EventX" 1.0.4 exists but carries the placeholder
+    description "Package Description", no project URL and no attribution to
+    EventXtra Limited — not treated as first-party.
+- registry: pkg.go.dev
+  query: proxy.golang.org/github.com/eventxtra/eventx-go
+  status: 404
+  api_clients_found: 0
+- registry: maven-central
+  query: eventx
+  api_clients_found: null
+  note: search.maven.org timed out at 20s during this pass; not established either way.

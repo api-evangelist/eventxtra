@@ -1,0 +1,61 @@
+generated: '2026-08-13'
+method: derived
+source: openapi/eventxtra-public-api-openapi.json
+docs: https://eventx-hq.gitbook.io/knowledge-base/api-doc/public-api
+format: custom-json-envelope
+rfc9457: false
+envelope:
+  shape: '{ error: { code, message, status, meta } }'
+  fields:
+  - {name: code, description: EventX error code}
+  - {name: message, description: human-readable error message}
+  - {name: status, description: the HTTP status code, repeated inside the body}
+  - {name: meta, description: additional per-error context}
+  content_type: application/json
+  source: OpenAPI info.description
+  note: >-
+    Not application/problem+json. No type URI, no title/detail/instance members,
+    so RFC 9457 tooling cannot consume these errors without a shim.
+coverage:
+  operations_total: 58
+  operations_with_500: 46
+  operations_with_2xx: 46
+  operations_with_no_declared_responses: 12
+  declared_response_codes: {'200': 39, '204': 7, '500': 46}
+gap:
+  note: >-
+    The published contract declares only 200 / 204 / 500. There is NO 400, 401,
+    403, 404, 409, 422 or 429 anywhere in the spec, even though the API is
+    authenticated (401/403 must occur), resource-scoped by {eventId}/{orgId}
+    (404 must occur), and validated (400/422 must occur). An agent reading this
+    spec cannot distinguish a bad token from a missing event from a server fault
+    — every failure is declared as an undifferentiated 500 "ERROR" with no
+    schema. This is the single largest contract-quality gap in the EventX API.
+  missing_status_codes: [400, 401, 403, 404, 409, 422, 429]
+  twelve_operations_with_zero_responses:
+  - markMediaAsUploaded
+  - removeOneMedia
+  - listCustomDomains
+  - createCustomDomain
+  - getCustomDomainDetail
+  - updateCustomDomain
+  - deleteCustomDomain
+  - verifyCustomDomain
+  - listPathMappings
+  - createPathMapping
+  - updatePathMapping
+  - deletePathMapping
+problems:
+- status: 500
+  title: ERROR
+  description: >-
+    The only failure response declared in the OpenAPI. Declared on 46 of 58
+    operations with the bare description "ERROR" and no response schema; the
+    envelope shape above is documented in info.description rather than per
+    operation.
+  body: '{ error: { code, message, status, meta } }'
+  source_operations: all-46-operations-with-declared-responses
+  remediation: >-
+    Read error.code and error.message from the body — the HTTP status alone
+    carries no information. Do not infer retryability from the 500: an
+    authentication or validation failure surfaces the same way as a server fault.

@@ -1,0 +1,109 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  https://eventx-hq.gitbook.io/knowledge-base/api-doc/auth +
+  https://eventx-hq.gitbook.io/knowledge-base/api-doc/public-api +
+  openapi/eventxtra-public-api-openapi.json (OpenAPI 3.2.0, info.description)
+api: EventX Public API
+base_url: https://esaas-api.eventx.io
+authentication:
+  style: bearer-jwt-exchanged-from-api-token
+  scheme_name: bearerAuth
+  header: Authorization
+  flow: >-
+    Obtain an apiToken from the EventX platform admin panel, POST it to
+    /public-api/v1/auth (operationId issueJwt), then send the returned
+    accessToken as an Authorization header on every subsequent request.
+  token_lifetime: short-lived — the auth response returns an expiresIn duration
+  operation: issueJwt
+  detail: authentication/eventxtra-authentication.yml
+  note: >-
+    The OpenAPI declares the scheme as type apiKey in header named Authorization
+    with the description "Bearer Authorization with jwt token" — a bearer token
+    modelled as an apiKey scheme, not an http/bearer scheme.
+idempotency:
+  supported: false
+  idempotency_key_header: null
+  note: >-
+    EventX documents NO idempotency-key contract. No Idempotency-Key header or
+    parameter appears anywhere in the OpenAPI, and the docs describe none. The
+    single operation described as idempotent is verifyCustomDomain ("Idempotent
+    — can be called multiple times to refresh the verification status"), which is
+    a naturally-repeatable status refresh, not a client-supplied idempotency key.
+    Writes such as createOrder, createEvent and bulkUpsertAttendeeByEventId carry
+    no replay-safety contract. No Idempotency pointer is emitted for this repo.
+pagination:
+  style: page-number
+  request_params:
+  - {name: page, in: query, type: number, minimum: 1, default: 1}
+  - {name: pageSize, in: query, type: number, minimum: 1, maximum: 100, default: 25}
+  - name: pageEnd
+    in: query
+    type: number
+    description: Optional inclusive ending page for requesting a range of pages. Maximum page range 200.
+  response_envelope: '{ dataList: [...], pagination: { page, pageSize, pageCount, totalCount } }'
+  response_fields: [page, pageSize, pageCount, totalCount]
+  applies_to: [getPaginatedEvent, getPaginatedHostingEvent, getPaginatedAttendeeByEventId, getPaginatedOrderByEventId, listCustomDomains, listPathMappings]
+sorting:
+  param: sort
+  syntax: 'comma-separated field list; a leading "-" means DESC, bare means ASC'
+  example: '-sorterA,sorterB'
+  default: '-createdAt'
+  documented_fields_events: [createdAt, updatedAt, startsAt, endsAt, name]
+filtering:
+  param: filter
+  style: >-
+    Structured object filter passed as a query parameter, with per-field
+    operators $eq, $in, $nin, $gt, $gte, $lt, $lte and $exists. Custom fields and
+    extensionData keys are filterable with the same operator set.
+  extras:
+  - {name: q, description: free-text search}
+  - {name: customFieldSearch, description: search across attendee custom fields}
+  - {name: isIgnoreCase, description: case-insensitive matching toggle}
+  - {name: 'createdAt$gt', description: created-after cutoff on attendee listing}
+response_envelope:
+  success_shapes:
+  - '{ data: ... }'
+  - '{ dataList: [...] }'
+  - '{ dataList: [...], pagination: {...} }'
+  - 'no body (status-only operations, HTTP 204)'
+  error_shape: '{ error: { code, message, status, meta } }'
+  source: OpenAPI info.description
+  note: >-
+    Errors are a bespoke JSON envelope, NOT RFC 9457 application/problem+json.
+    The envelope repeats the HTTP status inside the body as error.status.
+extensibility:
+  extension_data: >-
+    Events carry a free-form extensionData object (string/number/boolean values)
+    merged via PATCH /public-api/v1/event/{eventId}/extension-data
+    (patchEventExtensionDataById). Custom fields are managed through the event
+    question library (getAllCustomFieldByEventId, bulkUpsertCustomFieldByEventId).
+  metadata: extensionData is the metadata surface; there is no separate metadata field.
+  field_expansion: not documented
+bulk_operations:
+  supported: true
+  operations: [bulkUpsertAttendeeByEventId, bulkRemoveAttendeeByEventId, bulkDeleteAttendeeByEventId, bulkUpsertCustomFieldByEventId, bulkSendConfirmationEmailByEventId, bulkSendConfirmationSmsByEventId, bulkSendConfirmationWhatsAppMessageByEventId]
+  note: >-
+    bulk-remove detaches attendees from an event; bulk-delete permanently deletes
+    them. The distinction is documented per-operation and matters — bulk-delete
+    is irreversible.
+versioning:
+  scheme: uri-path
+  current: v1
+  spec_version_label: beta
+  note: >-
+    Every path is prefixed /public-api/v1/, but info.version in the published
+    OpenAPI is the string "beta" — the surface is versioned in the URI while the
+    contract itself is declared pre-GA.
+  detail: lifecycle/eventxtra-lifecycle.yml
+request_tracing:
+  request_id_header: not documented
+rate_limit_signaling:
+  documented: false
+  note: >-
+    No API rate-limit headers or 429 responses appear in the OpenAPI or the API
+    docs. EventX publishes rate limits only for public event landing/registration
+    pages, not for the Public API.
+  detail: rate-limits/eventxtra-rate-limits.yml
+errors: errors/eventxtra-problem-types.yml
+webhooks: asyncapi/eventxtra-webhooks.yml

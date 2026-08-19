@@ -1,0 +1,119 @@
+generated: '2026-08-13'
+method: derived
+source: >-
+  mcp/eventxtra-mcp.yml (vendor-documented MCP query areas from https://eventx.io/)
+  bound to openapi/eventxtra-public-api-openapi.json
+confidence_note: >-
+  EventX's MCP server is dashboard-provisioned per organization with no public
+  endpoint, so tools/list could not be called and no real tool names or
+  inputSchemas exist to bind. The rows below map the FOUR query areas EventX
+  documents on its homepage to the REST operations that serve the same data. They
+  are capability bindings, not tool bindings — every row is confidence: low and
+  the `tool` value is the vendor's own area label, not an invented tool name.
+  Nothing here should be read as a published MCP tool manifest.
+surfaces:
+  openapi:
+    file: openapi/eventxtra-public-api-openapi.json
+    version: 3.2.0
+    server: https://esaas-api.eventx.io
+    operations: 58
+    gated: false
+    note: Spec and docs are anonymously readable; calling the API needs an Enterprise apiToken.
+  mcp:
+    url: null
+    gated: true
+    reason: >-
+      No public/static MCP endpoint. Provisioned one-click per organization from
+      the EventX dashboard, so tools/list requires a tenant session. HTTP probe
+      of every EventX host found no MCP endpoint to POST to.
+    manifest: mcp/eventxtra-mcp.yml
+  graphql:
+    endpoint: null
+    documentation: https://eventxtra.github.io/ems-graphql-doc/
+    gated: true
+    note: >-
+      EventX publishes generated GraphQL schema documentation for its EMS API at
+      github.com/eventxtra/ems-graphql-doc (GitHub Pages, ~1,000 generated type
+      pages covering Attendee, Order, Regform, Broadcast, Group, EventxExhibitor,
+      EventxSponsor, NameBadge and more). NO endpoint URL is published anywhere in
+      that documentation and every candidate GraphQL host resolved NXDOMAIN, so
+      introspection could not be attempted and no SDL was captured.
+crosswalk:
+- tool: registrations
+  category: attendee
+  rest: [getPaginatedAttendeeByEventId, getAttendeeById, getAllAttendeeTagByEventId]
+  binding: rest
+  confidence: low
+  note: >-
+    Vendor area "Query registration lists and registration trends over time".
+    Trend/aggregation is not a REST capability — the listing operations return
+    raw attendee pages with createdAt$gt and sort, so any trend is computed
+    server-side by the MCP server with no REST equivalent.
+- tool: sessions
+  category: session
+  rest: []
+  binding: none
+  confidence: low
+  note: >-
+    Vendor area "session counts and session-level attendance". The Public API
+    exposes NO session endpoints. Sessions appear only as
+    accessiblePhysicalSessionIds / accessibleWebinarSessionIds on the attendee
+    record. This is an MCP-only capability against the REST surface.
+- tool: ticketing
+  category: commerce
+  rest: [getPaginatedOrderByEventId, getOrderById, getAllTicketClassByEventId, getAllTicketClassAddOnByEventId, getOneOrderInvoice, invoiceDetails]
+  binding: rest
+  confidence: low
+  note: Vendor area "ticket sales and revenue". Revenue rollups have no REST operation; order listing does.
+- tool: attendance
+  category: attendee
+  rest: [getPaginatedAttendeeByEventId, getAttendeeByCheckInQRCodeToken, getAttendeeByShortCode]
+  binding: rest
+  confidence: low
+  note: >-
+    Vendor area "attendee lists and on-site check-in / attendance figures".
+    checked_in_at / attendance_type / check_in_method are attendee fields; there
+    is no dedicated check-in reporting operation.
+mcp_only:
+- tool: sessions
+  reason: No session operations exist in the Public API; session data is reachable only through the MCP server or the organizer portal.
+- tool: 'aggregation and trend answers (all four areas)'
+  reason: >-
+    The MCP server answers natural-language questions ("registration trends",
+    "session counts", "revenue"). The REST API returns paginated raw records with
+    no aggregate/rollup endpoints, so every aggregation is an MCP-side composite.
+rest_only:
+- capability: event lifecycle
+  operations: [createEvent, updateEventById, deleteEventById, patchEventExtensionDataById, getEventById, getPaginatedEvent, getPaginatedHostingEvent]
+- capability: attendee writes
+  operations: [patchAttendeeById, bulkUpsertAttendeeByEventId, bulkRemoveAttendeeByEventId, bulkDeleteAttendeeByEventId, patchAttendeeTicketByAttendeeId]
+- capability: custom fields
+  operations: [getAllCustomFieldByEventId, bulkUpsertCustomFieldByEventId]
+- capability: webhooks
+  operations: [getAllEventWebhook, createEventWebhook, patchEventWebhookById, deleteEventWebhookById]
+- capability: outreach
+  operations: [bulkSendConfirmationEmailByEventId, sendTestConfirmationEmailByEventId, upsertEmailTemplateByType, bulkSendConfirmationSmsByEventId, bulkSendConfirmationWhatsAppMessageByEventId, sendManualEmailByEventId]
+- capability: registration and ordering
+  operations: [createRegForm, getRegFormByEventIdAndId, getPaymentConfigByEventId, createOrder, getOrderStatus, getOrderQuotation]
+- capability: ticket classes
+  operations: [createTicketClass]
+- capability: media
+  operations: [createMedia, markMediaAsUploaded, getOneMedia, removeOneMedia]
+- capability: custom domains
+  operations: [listCustomDomains, createCustomDomain, getCustomDomainDetail, updateCustomDomain, deleteCustomDomain, verifyCustomDomain, listPathMappings, createPathMapping, updatePathMapping, deletePathMapping]
+- capability: auth and integrations
+  operations: [issueJwt, getSalesforceAccount]
+coverage:
+  mcp_areas_documented: 4
+  mcp_tools_named_by_vendor: 0
+  areas_bound_to_rest: 3
+  areas_with_no_rest_backing: 1
+  rest_operations_total: 58
+  rest_operations_reachable_via_an_mcp_area: 9
+  rest_operations_with_no_mcp_area: 49
+  reading: >-
+    The MCP server is READ-ONLY over four analytics areas; the REST API is the
+    entire write surface. They are non-overlapping products, not two projections
+    of the same capability set — an agent that only speaks MCP to EventX can
+    answer questions but cannot create an event, register an attendee, or send a
+    confirmation.
