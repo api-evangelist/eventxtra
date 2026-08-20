@@ -56,6 +56,20 @@ tags:
 - Check-in
 - Event Marketing
 - Virtual Events
+- Webhook
+- OpenAPI
+- MCP
+- Artificial Intelligence
+- Hong Kong
+- APAC
+tags_raw:
+- Company
+- Event Management
+- Event Registration
+- Ticketing
+- Check-in
+- Event Marketing
+- Virtual Events
 - Webhooks
 - OpenAPI
 - MCP
@@ -81,6 +95,13 @@ apis:
   baseURL: https://esaas-api.eventx.io
   image: https://eventx.io/images/og/index-b41677e1.png
   tags:
+  - Event Management
+  - Event Registration
+  - Ticketing
+  - Check-in
+  - Attendees
+  - Webhook
+  tags_raw:
   - Event Management
   - Event Registration
   - Ticketing
