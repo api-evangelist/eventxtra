@@ -77,40 +77,16 @@ tags_raw:
 - Hong Kong
 - APAC
 apis:
-- name: EventX Public API
-  description: >-
-    The EventX Public API is a REST interface over the EventX event management
-    platform, published as an OpenAPI 3.2.0 document with 46 paths and 58
-    operations across Auth, Event, Attendee, Custom Field, Event Webhook, Order,
-    Outreach, Ticket Class, Invoice, Media, Registration Form, Registration
-    Service, Registration Order, Salesforce and organization-scoped custom
-    domains. Authentication is an apiToken-for-JWT exchange (POST
-    /public-api/v1/auth) with the resulting bearer token sent in an Authorization
-    header. Listing operations share a page/pageSize envelope with a
-    { dataList, pagination } response, and a per-event webhook subscription API
-    delivers five attendee lifecycle actions. The specification and the reference
-    documentation are anonymously readable; the apiToken itself is an
-    Enterprise-plan entitlement.
+- aid: eventxtra:eventxtra-attendee-api
+  name: EventX Attendee API
+  description: The Attendee API from EventX — 9 operation(s) for attendee.
   humanURL: https://eventx-hq.gitbook.io/knowledge-base/api-doc/auth
   baseURL: https://esaas-api.eventx.io
-  image: https://eventx.io/images/og/index-b41677e1.png
   tags:
-  - Event Management
-  - Event Registration
-  - Ticketing
-  - Check-in
-  - Attendees
-  - Webhook
-  tags_raw:
-  - Event Management
-  - Event Registration
-  - Ticketing
-  - Check-in
-  - Attendees
-  - Webhooks
+  - Attendee
   properties:
   - type: OpenAPI
-    url: openapi/eventxtra-public-api-openapi.json
+    url: openapi/eventxtra-attendee-api-openapi.yml
   - type: Documentation
     url: https://eventx-hq.gitbook.io/knowledge-base/api-doc/auth
   - type: APIReference
@@ -119,8 +95,286 @@ apis:
     url: authentication/eventxtra-authentication.yml
   - type: Webhooks
     url: asyncapi/eventxtra-webhooks.yml
-  - type: Overlay
-    url: overlays/eventxtra-public-api-overlay.yaml
+  - type: ToolCrosswalk
+    url: mcp/eventxtra-tool-crosswalk.yml
+- aid: eventxtra:eventxtra-auth-api
+  name: EventX Auth API
+  description: The Auth API from EventX — 1 operation(s) for auth.
+  humanURL: https://eventx-hq.gitbook.io/knowledge-base/api-doc/auth
+  baseURL: https://esaas-api.eventx.io
+  tags:
+  - Auth
+  properties:
+  - type: OpenAPI
+    url: openapi/eventxtra-auth-api-openapi.yml
+  - type: Documentation
+    url: https://eventx-hq.gitbook.io/knowledge-base/api-doc/auth
+  - type: APIReference
+    url: https://eventx-hq.gitbook.io/knowledge-base/api-doc/public-api
+  - type: Authentication
+    url: authentication/eventxtra-authentication.yml
+  - type: Webhooks
+    url: asyncapi/eventxtra-webhooks.yml
+  - type: ToolCrosswalk
+    url: mcp/eventxtra-tool-crosswalk.yml
+- aid: eventxtra:eventxtra-custom-field-api
+  name: EventX Custom Field API
+  description: The Custom Field API from EventX — 2 operation(s) for custom field.
+  humanURL: https://eventx-hq.gitbook.io/knowledge-base/api-doc/auth
+  baseURL: https://esaas-api.eventx.io
+  tags:
+  - Custom Field
+  properties:
+  - type: OpenAPI
+    url: openapi/eventxtra-custom-field-api-openapi.yml
+  - type: Documentation
+    url: https://eventx-hq.gitbook.io/knowledge-base/api-doc/auth
+  - type: APIReference
+    url: https://eventx-hq.gitbook.io/knowledge-base/api-doc/public-api
+  - type: Authentication
+    url: authentication/eventxtra-authentication.yml
+  - type: Webhooks
+    url: asyncapi/eventxtra-webhooks.yml
+  - type: ToolCrosswalk
+    url: mcp/eventxtra-tool-crosswalk.yml
+- aid: eventxtra:eventxtra-event-api
+  name: EventX Event API
+  description: The Event API from EventX — 4 operation(s) for event.
+  humanURL: https://eventx-hq.gitbook.io/knowledge-base/api-doc/auth
+  baseURL: https://esaas-api.eventx.io
+  tags:
+  - Event
+  properties:
+  - type: OpenAPI
+    url: openapi/eventxtra-event-api-openapi.yml
+  - type: Documentation
+    url: https://eventx-hq.gitbook.io/knowledge-base/api-doc/auth
+  - type: APIReference
+    url: https://eventx-hq.gitbook.io/knowledge-base/api-doc/public-api
+  - type: Authentication
+    url: authentication/eventxtra-authentication.yml
+  - type: Webhooks
+    url: asyncapi/eventxtra-webhooks.yml
+  - type: ToolCrosswalk
+    url: mcp/eventxtra-tool-crosswalk.yml
+- aid: eventxtra:eventxtra-event-webhook-api
+  name: EventX Event Webhook API
+  description: The Event Webhook API from EventX — 3 operation(s) for event webhook.
+  humanURL: https://eventx-hq.gitbook.io/knowledge-base/api-doc/auth
+  baseURL: https://esaas-api.eventx.io
+  tags:
+  - Event Webhook
+  properties:
+  - type: OpenAPI
+    url: openapi/eventxtra-event-webhook-api-openapi.yml
+  - type: Documentation
+    url: https://eventx-hq.gitbook.io/knowledge-base/api-doc/auth
+  - type: APIReference
+    url: https://eventx-hq.gitbook.io/knowledge-base/api-doc/public-api
+  - type: Authentication
+    url: authentication/eventxtra-authentication.yml
+  - type: Webhooks
+    url: asyncapi/eventxtra-webhooks.yml
+  - type: ToolCrosswalk
+    url: mcp/eventxtra-tool-crosswalk.yml
+- aid: eventxtra:eventxtra-invoice-api
+  name: EventX Invoice API
+  description: The Invoice API from EventX — 2 operation(s) for invoice.
+  humanURL: https://eventx-hq.gitbook.io/knowledge-base/api-doc/auth
+  baseURL: https://esaas-api.eventx.io
+  tags:
+  - Invoice
+  properties:
+  - type: OpenAPI
+    url: openapi/eventxtra-invoice-api-openapi.yml
+  - type: Documentation
+    url: https://eventx-hq.gitbook.io/knowledge-base/api-doc/auth
+  - type: APIReference
+    url: https://eventx-hq.gitbook.io/knowledge-base/api-doc/public-api
+  - type: Authentication
+    url: authentication/eventxtra-authentication.yml
+  - type: Webhooks
+    url: asyncapi/eventxtra-webhooks.yml
+  - type: ToolCrosswalk
+    url: mcp/eventxtra-tool-crosswalk.yml
+- aid: eventxtra:eventxtra-media-api
+  name: EventX Media API
+  description: The Media API from EventX — 3 operation(s) for media.
+  humanURL: https://eventx-hq.gitbook.io/knowledge-base/api-doc/auth
+  baseURL: https://esaas-api.eventx.io
+  tags:
+  - Media
+  properties:
+  - type: OpenAPI
+    url: openapi/eventxtra-media-api-openapi.yml
+  - type: Documentation
+    url: https://eventx-hq.gitbook.io/knowledge-base/api-doc/auth
+  - type: APIReference
+    url: https://eventx-hq.gitbook.io/knowledge-base/api-doc/public-api
+  - type: Authentication
+    url: authentication/eventxtra-authentication.yml
+  - type: Webhooks
+    url: asyncapi/eventxtra-webhooks.yml
+  - type: ToolCrosswalk
+    url: mcp/eventxtra-tool-crosswalk.yml
+- aid: eventxtra:eventxtra-order-api
+  name: EventX Order API
+  description: The Order API from EventX — 2 operation(s) for order.
+  humanURL: https://eventx-hq.gitbook.io/knowledge-base/api-doc/auth
+  baseURL: https://esaas-api.eventx.io
+  tags:
+  - Order
+  properties:
+  - type: OpenAPI
+    url: openapi/eventxtra-order-api-openapi.yml
+  - type: Documentation
+    url: https://eventx-hq.gitbook.io/knowledge-base/api-doc/auth
+  - type: APIReference
+    url: https://eventx-hq.gitbook.io/knowledge-base/api-doc/public-api
+  - type: Authentication
+    url: authentication/eventxtra-authentication.yml
+  - type: Webhooks
+    url: asyncapi/eventxtra-webhooks.yml
+  - type: ToolCrosswalk
+    url: mcp/eventxtra-tool-crosswalk.yml
+- aid: eventxtra:eventxtra-outreach-api
+  name: EventX Outreach API
+  description: The Outreach API from EventX — 6 operation(s) for outreach.
+  humanURL: https://eventx-hq.gitbook.io/knowledge-base/api-doc/auth
+  baseURL: https://esaas-api.eventx.io
+  tags:
+  - Outreach
+  properties:
+  - type: OpenAPI
+    url: openapi/eventxtra-outreach-api-openapi.yml
+  - type: Documentation
+    url: https://eventx-hq.gitbook.io/knowledge-base/api-doc/auth
+  - type: APIReference
+    url: https://eventx-hq.gitbook.io/knowledge-base/api-doc/public-api
+  - type: Authentication
+    url: authentication/eventxtra-authentication.yml
+  - type: Webhooks
+    url: asyncapi/eventxtra-webhooks.yml
+  - type: ToolCrosswalk
+    url: mcp/eventxtra-tool-crosswalk.yml
+- aid: eventxtra:eventxtra-public-api-api
+  name: EventX Public API
+  description: The Public Api API from EventX — 5 operation(s) for public api.
+  humanURL: https://eventx-hq.gitbook.io/knowledge-base/api-doc/auth
+  baseURL: https://esaas-api.eventx.io
+  tags:
+  - Public Api
+  properties:
+  - type: OpenAPI
+    url: openapi/eventxtra-public-api-api-openapi.yml
+  - type: Documentation
+    url: https://eventx-hq.gitbook.io/knowledge-base/api-doc/auth
+  - type: APIReference
+    url: https://eventx-hq.gitbook.io/knowledge-base/api-doc/public-api
+  - type: Authentication
+    url: authentication/eventxtra-authentication.yml
+  - type: Webhooks
+    url: asyncapi/eventxtra-webhooks.yml
+  - type: ToolCrosswalk
+    url: mcp/eventxtra-tool-crosswalk.yml
+- aid: eventxtra:eventxtra-registration-form-api
+  name: EventX Registration Form API
+  description: The Registration Form API from EventX — 1 operation(s) for registration form.
+  humanURL: https://eventx-hq.gitbook.io/knowledge-base/api-doc/auth
+  baseURL: https://esaas-api.eventx.io
+  tags:
+  - Registration Form
+  properties:
+  - type: OpenAPI
+    url: openapi/eventxtra-registration-form-api-openapi.yml
+  - type: Documentation
+    url: https://eventx-hq.gitbook.io/knowledge-base/api-doc/auth
+  - type: APIReference
+    url: https://eventx-hq.gitbook.io/knowledge-base/api-doc/public-api
+  - type: Authentication
+    url: authentication/eventxtra-authentication.yml
+  - type: Webhooks
+    url: asyncapi/eventxtra-webhooks.yml
+  - type: ToolCrosswalk
+    url: mcp/eventxtra-tool-crosswalk.yml
+- aid: eventxtra:eventxtra-registration-order-api
+  name: EventX Registration Order API
+  description: The Registration Order API from EventX — 3 operation(s) for registration order.
+  humanURL: https://eventx-hq.gitbook.io/knowledge-base/api-doc/auth
+  baseURL: https://esaas-api.eventx.io
+  tags:
+  - Registration Order
+  properties:
+  - type: OpenAPI
+    url: openapi/eventxtra-registration-order-api-openapi.yml
+  - type: Documentation
+    url: https://eventx-hq.gitbook.io/knowledge-base/api-doc/auth
+  - type: APIReference
+    url: https://eventx-hq.gitbook.io/knowledge-base/api-doc/public-api
+  - type: Authentication
+    url: authentication/eventxtra-authentication.yml
+  - type: Webhooks
+    url: asyncapi/eventxtra-webhooks.yml
+  - type: ToolCrosswalk
+    url: mcp/eventxtra-tool-crosswalk.yml
+- aid: eventxtra:eventxtra-registration-service-api
+  name: EventX Registration Service API
+  description: The Registration Service API from EventX — 2 operation(s) for registration service.
+  humanURL: https://eventx-hq.gitbook.io/knowledge-base/api-doc/auth
+  baseURL: https://esaas-api.eventx.io
+  tags:
+  - Registration Service
+  properties:
+  - type: OpenAPI
+    url: openapi/eventxtra-registration-service-api-openapi.yml
+  - type: Documentation
+    url: https://eventx-hq.gitbook.io/knowledge-base/api-doc/auth
+  - type: APIReference
+    url: https://eventx-hq.gitbook.io/knowledge-base/api-doc/public-api
+  - type: Authentication
+    url: authentication/eventxtra-authentication.yml
+  - type: Webhooks
+    url: asyncapi/eventxtra-webhooks.yml
+  - type: ToolCrosswalk
+    url: mcp/eventxtra-tool-crosswalk.yml
+- aid: eventxtra:eventxtra-salesforce-api
+  name: EventX Salesforce API
+  description: The Salesforce API from EventX — 1 operation(s) for salesforce.
+  humanURL: https://eventx-hq.gitbook.io/knowledge-base/api-doc/auth
+  baseURL: https://esaas-api.eventx.io
+  tags:
+  - Salesforce
+  properties:
+  - type: OpenAPI
+    url: openapi/eventxtra-salesforce-api-openapi.yml
+  - type: Documentation
+    url: https://eventx-hq.gitbook.io/knowledge-base/api-doc/auth
+  - type: APIReference
+    url: https://eventx-hq.gitbook.io/knowledge-base/api-doc/public-api
+  - type: Authentication
+    url: authentication/eventxtra-authentication.yml
+  - type: Webhooks
+    url: asyncapi/eventxtra-webhooks.yml
+  - type: ToolCrosswalk
+    url: mcp/eventxtra-tool-crosswalk.yml
+- aid: eventxtra:eventxtra-ticket-class-api
+  name: EventX Ticket Class API
+  description: The Ticket Class API from EventX — 3 operation(s) for ticket class.
+  humanURL: https://eventx-hq.gitbook.io/knowledge-base/api-doc/auth
+  baseURL: https://esaas-api.eventx.io
+  tags:
+  - Ticket Class
+  properties:
+  - type: OpenAPI
+    url: openapi/eventxtra-ticket-class-api-openapi.yml
+  - type: Documentation
+    url: https://eventx-hq.gitbook.io/knowledge-base/api-doc/auth
+  - type: APIReference
+    url: https://eventx-hq.gitbook.io/knowledge-base/api-doc/public-api
+  - type: Authentication
+    url: authentication/eventxtra-authentication.yml
+  - type: Webhooks
+    url: asyncapi/eventxtra-webhooks.yml
   - type: ToolCrosswalk
     url: mcp/eventxtra-tool-crosswalk.yml
 maintainers:
