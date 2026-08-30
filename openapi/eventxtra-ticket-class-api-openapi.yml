@@ -1,0 +1,1657 @@
+openapi: 3.2.0
+info:
+  title: Public Ticket Class API
+  version: beta
+  description: 'Response bodies vary by endpoint and may return `{ data }`, `{ dataList }`, `{ dataList, pagination }`, or no body for status-only operations. Successful responses use the HTTP status defined on each operation. Error responses return `{ error: { code, message, status, meta } }` with the corresponding HTTP status code.'
+servers:
+- url: https://esaas-api.eventx.io
+tags:
+- name: Ticket Class
+paths:
+  /public-api/v1/event/{eventId}/ticket-class/all:
+    get:
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  dataList:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                        contentI18n:
+                          type: object
+                          properties:
+                            name:
+                              type: object
+                              properties:
+                                default:
+                                  type: string
+                                  nullable: true
+                                en:
+                                  type: string
+                                  nullable: true
+                                ja:
+                                  type: string
+                                  nullable: true
+                                ko:
+                                  type: string
+                                  nullable: true
+                                vi:
+                                  type: string
+                                  nullable: true
+                                zh-HK:
+                                  type: string
+                                  nullable: true
+                                zh-CN:
+                                  type: string
+                                  nullable: true
+                                es:
+                                  type: string
+                                  nullable: true
+                                th:
+                                  type: string
+                                  nullable: true
+                                pt:
+                                  type: string
+                                  nullable: true
+                              required:
+                              - default
+                              additionalProperties: false
+                            description:
+                              type: object
+                              properties:
+                                default:
+                                  type: string
+                                  nullable: true
+                                en:
+                                  type: string
+                                  nullable: true
+                                ja:
+                                  type: string
+                                  nullable: true
+                                ko:
+                                  type: string
+                                  nullable: true
+                                vi:
+                                  type: string
+                                  nullable: true
+                                zh-HK:
+                                  type: string
+                                  nullable: true
+                                zh-CN:
+                                  type: string
+                                  nullable: true
+                                es:
+                                  type: string
+                                  nullable: true
+                                th:
+                                  type: string
+                                  nullable: true
+                                pt:
+                                  type: string
+                                  nullable: true
+                              required:
+                              - default
+                              additionalProperties: false
+                            message:
+                              type: object
+                              properties:
+                                default:
+                                  type: string
+                                  nullable: true
+                                en:
+                                  type: string
+                                  nullable: true
+                                ja:
+                                  type: string
+                                  nullable: true
+                                ko:
+                                  type: string
+                                  nullable: true
+                                vi:
+                                  type: string
+                                  nullable: true
+                                zh-HK:
+                                  type: string
+                                  nullable: true
+                                zh-CN:
+                                  type: string
+                                  nullable: true
+                                es:
+                                  type: string
+                                  nullable: true
+                                th:
+                                  type: string
+                                  nullable: true
+                                pt:
+                                  type: string
+                                  nullable: true
+                              required:
+                              - default
+                              additionalProperties: false
+                          additionalProperties: false
+                        price:
+                          type: number
+                          format: float
+                          minimum: 0
+                        qty:
+                          type: integer
+                          minimum: 1
+                        saleStartsAt:
+                          type: string
+                          format: date-time
+                        saleEndsAt:
+                          type: string
+                          format: date-time
+                          nullable: true
+                        addOnIds:
+                          type: array
+                          items:
+                            type: string
+                            format: uuid
+                        minAddOnQty:
+                          type: integer
+                          minimum: 0
+                        maxAddOnQty:
+                          type: integer
+                          minimum: 0
+                          nullable: true
+                        minQty:
+                          type: integer
+                          minimum: 0
+                        maxQty:
+                          type: integer
+                          minimum: 0
+                        createdAt:
+                          type: string
+                          format: date-time
+                        updatedAt:
+                          type: string
+                          format: date-time
+                        isAccessibleToAllWebinarSession:
+                          type: boolean
+                        accessibleWebinarSessionIds:
+                          type: array
+                          items:
+                            type: string
+                        isAccessibleToPhysicalEvent:
+                          type: boolean
+                        isAccessibleToAllPhysicalSessions:
+                          type: boolean
+                        accessiblePhysicalSessionIds:
+                          type: array
+                          items:
+                            type: string
+                        addOns:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                                format: uuid
+                              stockQty:
+                                type: integer
+                              isWaitlistEnabled:
+                                type: boolean
+                              waitlistStockQty:
+                                type: integer
+                                minimum: 0
+                                nullable: true
+                              price:
+                                type: number
+                                format: float
+                                minimum: 0
+                              accessiblePhysicalSessionIds:
+                                type: array
+                                items:
+                                  type: string
+                                  format: uuid
+                              isAccessibleToAllPhysicalSessions:
+                                type: boolean
+                              contentI18n:
+                                type: object
+                                properties:
+                                  name:
+                                    type: object
+                                    properties:
+                                      default:
+                                        type: string
+                                        nullable: true
+                                      en:
+                                        type: string
+                                        nullable: true
+                                      ja:
+                                        type: string
+                                        nullable: true
+                                      ko:
+                                        type: string
+                                        nullable: true
+                                      vi:
+                                        type: string
+                                        nullable: true
+                                      zh-HK:
+                                        type: string
+                                        nullable: true
+                                      zh-CN:
+                                        type: string
+                                        nullable: true
+                                      es:
+                                        type: string
+                                        nullable: true
+                                      th:
+                                        type: string
+                                        nullable: true
+                                      pt:
+                                        type: string
+                                        nullable: true
+                                    required:
+                                    - default
+                                    additionalProperties: false
+                                  description:
+                                    type: object
+                                    properties:
+                                      default:
+                                        type: string
+                                        nullable: true
+                                      en:
+                                        type: string
+                                        nullable: true
+                                      ja:
+                                        type: string
+                                        nullable: true
+                                      ko:
+                                        type: string
+                                        nullable: true
+                                      vi:
+                                        type: string
+                                        nullable: true
+                                      zh-HK:
+                                        type: string
+                                        nullable: true
+                                      zh-CN:
+                                        type: string
+                                        nullable: true
+                                      es:
+                                        type: string
+                                        nullable: true
+                                      th:
+                                        type: string
+                                        nullable: true
+                                      pt:
+                                        type: string
+                                        nullable: true
+                                    required:
+                                    - default
+                                    additionalProperties: false
+                                additionalProperties: false
+                              type:
+                                type: string
+                                enum:
+                                - session
+                              iconMedia:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                    format: uuid
+                                  originalFilename:
+                                    type: string
+                                  previewFilename:
+                                    type: string
+                                  originalFilepath:
+                                    type: string
+                                  previewFilepath:
+                                    type: string
+                                  mimeType:
+                                    type: string
+                                  type:
+                                    type: string
+                                    enum:
+                                    - image
+                                    - video
+                                    - file
+                                  size:
+                                    type: number
+                                    format: float
+                                required:
+                                - id
+                                - originalFilename
+                                - previewFilename
+                                - originalFilepath
+                                - previewFilepath
+                                - mimeType
+                                - size
+                                additionalProperties: false
+                                nullable: true
+                              soldQty:
+                                type: integer
+                                minimum: 0
+                              waitlistAvailableCount:
+                                type: integer
+                                minimum: 0
+                            required:
+                            - id
+                            - stockQty
+                            - isWaitlistEnabled
+                            - waitlistStockQty
+                            - price
+                            - accessiblePhysicalSessionIds
+                            - isAccessibleToAllPhysicalSessions
+                            - contentI18n
+                            - type
+                            - iconMedia
+                            - soldQty
+                            - waitlistAvailableCount
+                            additionalProperties: false
+                        rawData:
+                          type: object
+                          properties:
+                            contentI18n:
+                              type: object
+                              properties:
+                                name:
+                                  type: object
+                                  properties:
+                                    default:
+                                      type: string
+                                      nullable: true
+                                    en:
+                                      type: string
+                                      nullable: true
+                                    ja:
+                                      type: string
+                                      nullable: true
+                                    ko:
+                                      type: string
+                                      nullable: true
+                                    vi:
+                                      type: string
+                                      nullable: true
+                                    zh-HK:
+                                      type: string
+                                      nullable: true
+                                    zh-CN:
+                                      type: string
+                                      nullable: true
+                                    es:
+                                      type: string
+                                      nullable: true
+                                    th:
+                                      type: string
+                                      nullable: true
+                                    pt:
+                                      type: string
+                                      nullable: true
+                                  required:
+                                  - default
+                                  additionalProperties: false
+                                description:
+                                  type: object
+                                  properties:
+                                    default:
+                                      type: string
+                                      nullable: true
+                                    en:
+                                      type: string
+                                      nullable: true
+                                    ja:
+                                      type: string
+                                      nullable: true
+                                    ko:
+                                      type: string
+                                      nullable: true
+                                    vi:
+                                      type: string
+                                      nullable: true
+                                    zh-HK:
+                                      type: string
+                                      nullable: true
+                                    zh-CN:
+                                      type: string
+                                      nullable: true
+                                    es:
+                                      type: string
+                                      nullable: true
+                                    th:
+                                      type: string
+                                      nullable: true
+                                    pt:
+                                      type: string
+                                      nullable: true
+                                  required:
+                                  - default
+                                  additionalProperties: false
+                                message:
+                                  type: object
+                                  properties:
+                                    default:
+                                      type: string
+                                      nullable: true
+                                    en:
+                                      type: string
+                                      nullable: true
+                                    ja:
+                                      type: string
+                                      nullable: true
+                                    ko:
+                                      type: string
+                                      nullable: true
+                                    vi:
+                                      type: string
+                                      nullable: true
+                                    zh-HK:
+                                      type: string
+                                      nullable: true
+                                    zh-CN:
+                                      type: string
+                                      nullable: true
+                                    es:
+                                      type: string
+                                      nullable: true
+                                    th:
+                                      type: string
+                                      nullable: true
+                                    pt:
+                                      type: string
+                                      nullable: true
+                                  required:
+                                  - default
+                                  additionalProperties: false
+                              additionalProperties: false
+                            price:
+                              type: number
+                              format: float
+                              minimum: 0
+                            qty:
+                              type: integer
+                              minimum: 1
+                            saleStartsAt:
+                              type: string
+                              format: date-time
+                            saleEndsAt:
+                              type: string
+                              format: date-time
+                              nullable: true
+                            addOnIds:
+                              type: array
+                              items:
+                                type: string
+                                format: uuid
+                            minAddOnQty:
+                              type: integer
+                              minimum: 0
+                            maxAddOnQty:
+                              type: integer
+                              minimum: 0
+                              nullable: true
+                            minQty:
+                              type: integer
+                              minimum: 0
+                            maxQty:
+                              type: integer
+                              minimum: 0
+                          additionalProperties: false
+                      required:
+                      - id
+                      - contentI18n
+                      - price
+                      - qty
+                      - saleStartsAt
+                      - saleEndsAt
+                      - addOnIds
+                      - minAddOnQty
+                      - maxAddOnQty
+                      - minQty
+                      - maxQty
+                      - createdAt
+                      - updatedAt
+                      - isAccessibleToAllWebinarSession
+                      - accessibleWebinarSessionIds
+                      - isAccessibleToPhysicalEvent
+                      - isAccessibleToAllPhysicalSessions
+                      - accessiblePhysicalSessionIds
+                      - rawData
+                      additionalProperties: false
+                      description: Ticket class response object including add-ons, pricing, and availability
+                      example:
+                        id: 550e8400-e29b-41d4-a716-446655440000
+                        contentI18n:
+                          name:
+                            default: General Admission
+                          description:
+                            default: Standard entry ticket
+                          message:
+                            default: ''
+                        price: 100
+                        qty: 500
+                        saleStartsAt: '2024-01-01T00:00:00.000Z'
+                        saleEndsAt: null
+                        addOnIds:
+                        - 550e8400-e29b-41d4-a716-446655440001
+                        minAddOnQty: 0
+                        maxAddOnQty: null
+                        minQty: 1
+                        maxQty: 10
+                        createdAt: '2024-01-01T00:00:00.000Z'
+                        updatedAt: '2024-01-01T00:00:00.000Z'
+                        isAccessibleToAllWebinarSession: false
+                        accessibleWebinarSessionIds: []
+                        isAccessibleToPhysicalEvent: true
+                        isAccessibleToAllPhysicalSessions: true
+                        accessiblePhysicalSessionIds: []
+                        addOns:
+                        - id: 550e8400-e29b-41d4-a716-446655440001
+                          stockQty: 100
+                          isWaitlistEnabled: false
+                          waitlistStockQty: null
+                          price: 50
+                          accessiblePhysicalSessionIds: []
+                          isAccessibleToAllPhysicalSessions: true
+                          contentI18n:
+                            name:
+                              default: Lunch Add-on
+                            description:
+                              default: Includes lunch
+                          type: ADD_ON
+                          iconMedia: null
+                          soldQty: 0
+                          waitlistAvailableCount: 0
+                        rawData:
+                          contentI18n:
+                            name:
+                              default: General Admission
+                            description:
+                              default: Standard entry ticket
+                          price: 100
+                          qty: 500
+                          saleStartsAt: '2024-01-01T00:00:00.000Z'
+                          saleEndsAt: null
+                          addOnIds:
+                          - 550e8400-e29b-41d4-a716-446655440001
+                          minAddOnQty: 0
+                          maxAddOnQty: null
+                          minQty: 1
+                          maxQty: 10
+                required:
+                - dataList
+                additionalProperties: false
+        '500':
+          description: ERROR
+      parameters:
+      - name: eventId
+        in: path
+        required: true
+        schema:
+          type: string
+      security:
+      - bearerAuth: []
+      tags:
+      - Ticket Class
+      operationId: getAllTicketClassByEventId
+      summary: List all ticket classes for an event
+  /public-api/v1/event/{eventId}/ticket-class:
+    post:
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        format: uuid
+                      contentI18n:
+                        type: object
+                        properties:
+                          name:
+                            type: object
+                            properties:
+                              default:
+                                type: string
+                                nullable: true
+                              en:
+                                type: string
+                                nullable: true
+                              ja:
+                                type: string
+                                nullable: true
+                              ko:
+                                type: string
+                                nullable: true
+                              vi:
+                                type: string
+                                nullable: true
+                              zh-HK:
+                                type: string
+                                nullable: true
+                              zh-CN:
+                                type: string
+                                nullable: true
+                              es:
+                                type: string
+                                nullable: true
+                              th:
+                                type: string
+                                nullable: true
+                              pt:
+                                type: string
+                                nullable: true
+                            required:
+                            - default
+                            additionalProperties: false
+                          description:
+                            type: object
+                            properties:
+                              default:
+                                type: string
+                                nullable: true
+                              en:
+                                type: string
+                                nullable: true
+                              ja:
+                                type: string
+                                nullable: true
+                              ko:
+                                type: string
+                                nullable: true
+                              vi:
+                                type: string
+                                nullable: true
+                              zh-HK:
+                                type: string
+                                nullable: true
+                              zh-CN:
+                                type: string
+                                nullable: true
+                              es:
+                                type: string
+                                nullable: true
+                              th:
+                                type: string
+                                nullable: true
+                              pt:
+                                type: string
+                                nullable: true
+                            required:
+                            - default
+                            additionalProperties: false
+                          message:
+                            type: object
+                            properties:
+                              default:
+                                type: string
+                                nullable: true
+                              en:
+                                type: string
+                                nullable: true
+                              ja:
+                                type: string
+                                nullable: true
+                              ko:
+                                type: string
+                                nullable: true
+                              vi:
+                                type: string
+                                nullable: true
+                              zh-HK:
+                                type: string
+                                nullable: true
+                              zh-CN:
+                                type: string
+                                nullable: true
+                              es:
+                                type: string
+                                nullable: true
+                              th:
+                                type: string
+                                nullable: true
+                              pt:
+                                type: string
+                                nullable: true
+                            required:
+                            - default
+                            additionalProperties: false
+                        additionalProperties: false
+                      price:
+                        type: number
+                        format: float
+                        minimum: 0
+                      qty:
+                        type: integer
+                        minimum: 1
+                      saleStartsAt:
+                        type: string
+                        format: date-time
+                      saleEndsAt:
+                        type: string
+                        format: date-time
+                        nullable: true
+                      addOnIds:
+                        type: array
+                        items:
+                          type: string
+                          format: uuid
+                      minAddOnQty:
+                        type: integer
+                        minimum: 0
+                      maxAddOnQty:
+                        type: integer
+                        minimum: 0
+                        nullable: true
+                      minQty:
+                        type: integer
+                        minimum: 0
+                      maxQty:
+                        type: integer
+                        minimum: 0
+                      createdAt:
+                        type: string
+                        format: date-time
+                      updatedAt:
+                        type: string
+                        format: date-time
+                      isAccessibleToAllWebinarSession:
+                        type: boolean
+                      accessibleWebinarSessionIds:
+                        type: array
+                        items:
+                          type: string
+                      isAccessibleToPhysicalEvent:
+                        type: boolean
+                      isAccessibleToAllPhysicalSessions:
+                        type: boolean
+                      accessiblePhysicalSessionIds:
+                        type: array
+                        items:
+                          type: string
+                      addOns:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              format: uuid
+                            stockQty:
+                              type: integer
+                            isWaitlistEnabled:
+                              type: boolean
+                            waitlistStockQty:
+                              type: integer
+                              minimum: 0
+                              nullable: true
+                            price:
+                              type: number
+                              format: float
+                              minimum: 0
+                            accessiblePhysicalSessionIds:
+                              type: array
+                              items:
+                                type: string
+                                format: uuid
+                            isAccessibleToAllPhysicalSessions:
+                              type: boolean
+                            contentI18n:
+                              type: object
+                              properties:
+                                name:
+                                  type: object
+                                  properties:
+                                    default:
+                                      type: string
+                                      nullable: true
+                                    en:
+                                      type: string
+                                      nullable: true
+                                    ja:
+                                      type: string
+                                      nullable: true
+                                    ko:
+                                      type: string
+                                      nullable: true
+                                    vi:
+                                      type: string
+                                      nullable: true
+                                    zh-HK:
+                                      type: string
+                                      nullable: true
+                                    zh-CN:
+                                      type: string
+                                      nullable: true
+                                    es:
+                                      type: string
+                                      nullable: true
+                                    th:
+                                      type: string
+                                      nullable: true
+                                    pt:
+                                      type: string
+                                      nullable: true
+                                  required:
+                                  - default
+                                  additionalProperties: false
+                                description:
+                                  type: object
+                                  properties:
+                                    default:
+                                      type: string
+                                      nullable: true
+                                    en:
+                                      type: string
+                                      nullable: true
+                                    ja:
+                                      type: string
+                                      nullable: true
+                                    ko:
+                                      type: string
+                                      nullable: true
+                                    vi:
+                                      type: string
+                                      nullable: true
+                                    zh-HK:
+                                      type: string
+                                      nullable: true
+                                    zh-CN:
+                                      type: string
+                                      nullable: true
+                                    es:
+                                      type: string
+                                      nullable: true
+                                    th:
+                                      type: string
+                                      nullable: true
+                                    pt:
+                                      type: string
+                                      nullable: true
+                                  required:
+                                  - default
+                                  additionalProperties: false
+                              additionalProperties: false
+                            type:
+                              type: string
+                              enum:
+                              - session
+                            iconMedia:
+                              type: object
+                              properties:
+                                id:
+                                  type: string
+                                  format: uuid
+                                originalFilename:
+                                  type: string
+                                previewFilename:
+                                  type: string
+                                originalFilepath:
+                                  type: string
+                                previewFilepath:
+                                  type: string
+                                mimeType:
+                                  type: string
+                                type:
+                                  type: string
+                                  enum:
+                                  - image
+                                  - video
+                                  - file
+                                size:
+                                  type: number
+                                  format: float
+                              required:
+                              - id
+                              - originalFilename
+                              - previewFilename
+                              - originalFilepath
+                              - previewFilepath
+                              - mimeType
+                              - size
+                              additionalProperties: false
+                              nullable: true
+                            soldQty:
+                              type: integer
+                              minimum: 0
+                            waitlistAvailableCount:
+                              type: integer
+                              minimum: 0
+                          required:
+                          - id
+                          - stockQty
+                          - isWaitlistEnabled
+                          - waitlistStockQty
+                          - price
+                          - accessiblePhysicalSessionIds
+                          - isAccessibleToAllPhysicalSessions
+                          - contentI18n
+                          - type
+                          - iconMedia
+                          - soldQty
+                          - waitlistAvailableCount
+                          additionalProperties: false
+                      rawData:
+                        type: object
+                        properties:
+                          contentI18n:
+                            type: object
+                            properties:
+                              name:
+                                type: object
+                                properties:
+                                  default:
+                                    type: string
+                                    nullable: true
+                                  en:
+                                    type: string
+                                    nullable: true
+                                  ja:
+                                    type: string
+                                    nullable: true
+                                  ko:
+                                    type: string
+                                    nullable: true
+                                  vi:
+                                    type: string
+                                    nullable: true
+                                  zh-HK:
+                                    type: string
+                                    nullable: true
+                                  zh-CN:
+                                    type: string
+                                    nullable: true
+                                  es:
+                                    type: string
+                                    nullable: true
+                                  th:
+                                    type: string
+                                    nullable: true
+                                  pt:
+                                    type: string
+                                    nullable: true
+                                required:
+                                - default
+                                additionalProperties: false
+                              description:
+                                type: object
+                                properties:
+                                  default:
+                                    type: string
+                                    nullable: true
+                                  en:
+                                    type: string
+                                    nullable: true
+                                  ja:
+                                    type: string
+                                    nullable: true
+                                  ko:
+                                    type: string
+                                    nullable: true
+                                  vi:
+                                    type: string
+                                    nullable: true
+                                  zh-HK:
+                                    type: string
+                                    nullable: true
+                                  zh-CN:
+                                    type: string
+                                    nullable: true
+                                  es:
+                                    type: string
+                                    nullable: true
+                                  th:
+                                    type: string
+                                    nullable: true
+                                  pt:
+                                    type: string
+                                    nullable: true
+                                required:
+                                - default
+                                additionalProperties: false
+                              message:
+                                type: object
+                                properties:
+                                  default:
+                                    type: string
+                                    nullable: true
+                                  en:
+                                    type: string
+                                    nullable: true
+                                  ja:
+                                    type: string
+                                    nullable: true
+                                  ko:
+                                    type: string
+                                    nullable: true
+                                  vi:
+                                    type: string
+                                    nullable: true
+                                  zh-HK:
+                                    type: string
+                                    nullable: true
+                                  zh-CN:
+                                    type: string
+                                    nullable: true
+                                  es:
+                                    type: string
+                                    nullable: true
+                                  th:
+                                    type: string
+                                    nullable: true
+                                  pt:
+                                    type: string
+                                    nullable: true
+                                required:
+                                - default
+                                additionalProperties: false
+                            additionalProperties: false
+                          price:
+                            type: number
+                            format: float
+                            minimum: 0
+                          qty:
+                            type: integer
+                            minimum: 1
+                          saleStartsAt:
+                            type: string
+                            format: date-time
+                          saleEndsAt:
+                            type: string
+                            format: date-time
+                            nullable: true
+                          addOnIds:
+                            type: array
+                            items:
+                              type: string
+                              format: uuid
+                          minAddOnQty:
+                            type: integer
+                            minimum: 0
+                          maxAddOnQty:
+                            type: integer
+                            minimum: 0
+                            nullable: true
+                          minQty:
+                            type: integer
+                            minimum: 0
+                          maxQty:
+                            type: integer
+                            minimum: 0
+                        additionalProperties: false
+                    required:
+                    - id
+                    - contentI18n
+                    - price
+                    - qty
+                    - saleStartsAt
+                    - saleEndsAt
+                    - addOnIds
+                    - minAddOnQty
+                    - maxAddOnQty
+                    - minQty
+                    - maxQty
+                    - createdAt
+                    - updatedAt
+                    - isAccessibleToAllWebinarSession
+                    - accessibleWebinarSessionIds
+                    - isAccessibleToPhysicalEvent
+                    - isAccessibleToAllPhysicalSessions
+                    - accessiblePhysicalSessionIds
+                    - rawData
+                    additionalProperties: false
+                    description: Ticket class response object including add-ons, pricing, and availability
+                    example:
+                      id: 550e8400-e29b-41d4-a716-446655440000
+                      contentI18n:
+                        name:
+                          default: General Admission
+                        description:
+                          default: Standard entry ticket
+                        message:
+                          default: ''
+                      price: 100
+                      qty: 500
+                      saleStartsAt: '2024-01-01T00:00:00.000Z'
+                      saleEndsAt: null
+                      addOnIds:
+                      - 550e8400-e29b-41d4-a716-446655440001
+                      minAddOnQty: 0
+                      maxAddOnQty: null
+                      minQty: 1
+                      maxQty: 10
+                      createdAt: '2024-01-01T00:00:00.000Z'
+                      updatedAt: '2024-01-01T00:00:00.000Z'
+                      isAccessibleToAllWebinarSession: false
+                      accessibleWebinarSessionIds: []
+                      isAccessibleToPhysicalEvent: true
+                      isAccessibleToAllPhysicalSessions: true
+                      accessiblePhysicalSessionIds: []
+                      addOns:
+                      - id: 550e8400-e29b-41d4-a716-446655440001
+                        stockQty: 100
+                        isWaitlistEnabled: false
+                        waitlistStockQty: null
+                        price: 50
+                        accessiblePhysicalSessionIds: []
+                        isAccessibleToAllPhysicalSessions: true
+                        contentI18n:
+                          name:
+                            default: Lunch Add-on
+                          description:
+                            default: Includes lunch
+                        type: ADD_ON
+                        iconMedia: null
+                        soldQty: 0
+                        waitlistAvailableCount: 0
+                      rawData:
+                        contentI18n:
+                          name:
+                            default: General Admission
+                          description:
+                            default: Standard entry ticket
+                        price: 100
+                        qty: 500
+                        saleStartsAt: '2024-01-01T00:00:00.000Z'
+                        saleEndsAt: null
+                        addOnIds:
+                        - 550e8400-e29b-41d4-a716-446655440001
+                        minAddOnQty: 0
+                        maxAddOnQty: null
+                        minQty: 1
+                        maxQty: 10
+                required:
+                - data
+                additionalProperties: false
+        '500':
+          description: ERROR
+      parameters:
+      - name: eventId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                contentI18n:
+                  type: object
+                  properties:
+                    name:
+                      type: object
+                      properties:
+                        default:
+                          type: string
+                          nullable: true
+                        en:
+                          type: string
+                          nullable: true
+                        ja:
+                          type: string
+                          nullable: true
+                        ko:
+                          type: string
+                          nullable: true
+                        vi:
+                          type: string
+                          nullable: true
+                        zh-HK:
+                          type: string
+                          nullable: true
+                        zh-CN:
+                          type: string
+                          nullable: true
+                        es:
+                          type: string
+                          nullable: true
+                        th:
+                          type: string
+                          nullable: true
+                        pt:
+                          type: string
+                          nullable: true
+                      required:
+                      - default
+                      additionalProperties: false
+                    description:
+                      type: object
+                      properties:
+                        default:
+                          type: string
+                          nullable: true
+                        en:
+                          type: string
+                          nullable: true
+                        ja:
+                          type: string
+                          nullable: true
+                        ko:
+                          type: string
+                          nullable: true
+                        vi:
+                          type: string
+                          nullable: true
+                        zh-HK:
+                          type: string
+                          nullable: true
+                        zh-CN:
+                          type: string
+                          nullable: true
+                        es:
+                          type: string
+                          nullable: true
+                        th:
+                          type: string
+                          nullable: true
+                        pt:
+                          type: string
+                          nullable: true
+                      required:
+                      - default
+                      additionalProperties: false
+                    message:
+                      type: object
+                      properties:
+                        default:
+                          type: string
+                          nullable: true
+                        en:
+                          type: string
+                          nullable: true
+                        ja:
+                          type: string
+                          nullable: true
+                        ko:
+                          type: string
+                          nullable: true
+                        vi:
+                          type: string
+                          nullable: true
+                        zh-HK:
+                          type: string
+                          nullable: true
+                        zh-CN:
+                          type: string
+                          nullable: true
+                        es:
+                          type: string
+                          nullable: true
+                        th:
+                          type: string
+                          nullable: true
+                        pt:
+                          type: string
+                          nullable: true
+                      required:
+                      - default
+                      additionalProperties: false
+                  additionalProperties: false
+                price:
+                  type: number
+                  format: float
+                  minimum: 0
+                qty:
+                  type: integer
+                  minimum: 1
+                saleStartsAt:
+                  type: string
+                  format: date-time
+                saleEndsAt:
+                  type: string
+                  format: date-time
+                  nullable: true
+                addOnIds:
+                  type: array
+                  items:
+                    type: string
+                    format: uuid
+                minAddOnQty:
+                  type: integer
+                  minimum: 0
+                maxAddOnQty:
+                  type: integer
+                  minimum: 0
+                  nullable: true
+                minQty:
+                  type: integer
+                  minimum: 0
+                maxQty:
+                  type: integer
+                  minimum: 0
+              required:
+              - contentI18n
+              - price
+              - qty
+              - saleStartsAt
+              - saleEndsAt
+              - addOnIds
+              - minAddOnQty
+              - maxAddOnQty
+              - minQty
+              - maxQty
+              additionalProperties: false
+              description: Request body for creating a ticket class
+              example:
+                contentI18n:
+                  name:
+                    default: General Admission
+                  description:
+                    default: Standard entry ticket
+                price: 100
+                qty: 500
+                saleStartsAt: '2024-01-01T00:00:00.000Z'
+                saleEndsAt: null
+                addOnIds: []
+                minAddOnQty: 0
+                maxAddOnQty: 10
+                minQty: 1
+                maxQty: 10
+      security:
+      - bearerAuth: []
+      tags:
+      - Ticket Class
+      operationId: createTicketClass
+      summary: Create a ticket class for an event
+  /public-api/v1/event/{eventId}/ticket-class-add-on/all:
+    get:
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  dataList:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                        stockQty:
+                          type: integer
+                        price:
+                          type: number
+                          format: float
+                          minimum: 0
+                        accessiblePhysicalSessionIds:
+                          type: array
+                          items:
+                            type: string
+                            format: uuid
+                        isAccessibleToAllPhysicalSessions:
+                          type: boolean
+                        contentI18n:
+                          type: object
+                          properties:
+                            name:
+                              type: object
+                              properties:
+                                default:
+                                  type: string
+                                  nullable: true
+                                en:
+                                  type: string
+                                  nullable: true
+                                ja:
+                                  type: string
+                                  nullable: true
+                                ko:
+                                  type: string
+                                  nullable: true
+                                vi:
+                                  type: string
+                                  nullable: true
+                                zh-HK:
+                                  type: string
+                                  nullable: true
+                                zh-CN:
+                                  type: string
+                                  nullable: true
+                                es:
+                                  type: string
+                                  nullable: true
+                                th:
+                                  type: string
+                                  nullable: true
+                                pt:
+                                  type: string
+                                  nullable: true
+                              required:
+                              - default
+                              additionalProperties: false
+                            description:
+                              type: object
+                              properties:
+                                default:
+                                  type: string
+                                  nullable: true
+                                en:
+                                  type: string
+                                  nullable: true
+                                ja:
+                                  type: string
+                                  nullable: true
+                                ko:
+                                  type: string
+                                  nullable: true
+                                vi:
+                                  type: string
+                                  nullable: true
+                                zh-HK:
+                                  type: string
+                                  nullable: true
+                                zh-CN:
+                                  type: string
+                                  nullable: true
+                                es:
+                                  type: string
+                                  nullable: true
+                                th:
+                                  type: string
+                                  nullable: true
+                                pt:
+                                  type: string
+                                  nullable: true
+                              required:
+                              - default
+                              additionalProperties: false
+                          additionalProperties: false
+                        type:
+                          type: string
+                          enum:
+                          - session
+                        createdAt:
+                          type: string
+                          format: date-time
+                        updatedAt:
+                          type: string
+                          format: date-time
+                        iconMedia:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              format: uuid
+                            originalFilename:
+                              type: string
+                            previewFilename:
+                              type: string
+                            originalFilepath:
+                              type: string
+                            previewFilepath:
+                              type: string
+                            mimeType:
+                              type: string
+                            type:
+                              type: string
+                              enum:
+                              - image
+                              - video
+                              - file
+                            size:
+                              type: number
+                              format: float
+                          required:
+                          - id
+                          - originalFilename
+                          - previewFilename
+                          - originalFilepath
+                          - previewFilepath
+                          - mimeType
+                          - size
+                          additionalProperties: false
+                          nullable: true
+                        soldQty:
+                          type: integer
+                          minimum: 0
+                        rawData:
+                          type: object
+                          properties:
+                            stockQty:
+                              type: integer
+                            price:
+                              type: number
+                              format: float
+                              minimum: 0
+                            accessiblePhysicalSessionIds:
+                              type: array
+                              items:
+                                type: string
+                                format: uuid
+                            isAccessibleToAllPhysicalSessions:
+                              type: boolean
+                            contentI18n:
+                              type: object
+                              properties:
+                                name:
+                                  type: object
+                                  properties:
+                                    default:
+                                      type: string
+                                      nullable: true
+                                    en:
+                                      type: string
+                                      nullable: true
+                                    ja:
+                                      type: string
+                                      nullable: true
+                                    ko:
+                                      type: string
+                                      nullable: true
+                                    vi:
+                                      type: string
+                                      nullable: true
+                                    zh-HK:
+                                      type: string
+                                      nullable: true
+                                    zh-CN:
+                                      type: string
+                                      nullable: true
+                                    es:
+                                      type: string
+                                      nullable: true
+                                    th:
+                                      type: string
+                                      nullable: true
+                                    pt:
+                                      type: string
+                                      nullable: true
+                                  required:
+                                  - default
+                                  additionalProperties: false
+                                description:
+                                  type: object
+                                  properties:
+                                    default:
+                                      type: string
+                                      nullable: true
+                                    en:
+                                      type: string
+                                      nullable: true
+                                    ja:
+                                      type: string
+                                      nullable: true
+                                    ko:
+                                      type: string
+                                      nullable: true
+                                    vi:
+                                      type: string
+                                      nullable: true
+                                    zh-HK:
+                                      type: string
+                                      nullable: true
+                                    zh-CN:
+                                      type: string
+                                      nullable: true
+                                    es:
+                                      type: string
+                                      nullable: true
+                                    th:
+                                      type: string
+                                      nullable: true
+                                    pt:
+                                      type: string
+                                      nullable: true
+                                  required:
+                                  - default
+                                  additionalProperties: false
+                              additionalProperties: false
+                            type:
+                              type: string
+                              enum:
+                              - session
+                          additionalProperties: false
+                      required:
+                      - id
+                      - stockQty
+                      - price
+                      - accessiblePhysicalSessionIds
+                      - isAccessibleToAllPhysicalSessions
+                      - contentI18n
+                      - type
+                      - createdAt
+                      - updatedAt
+                      - iconMedia
+                      - soldQty
+                      - rawData
+                      additionalProperties: false
+                required:
+                - dataList
+                additionalProperties: false
+        '500':
+          description: ERROR
+      parameters:
+      - name: eventId
+        in: path
+        required: true
+        schema:
+          type: string
+      security:
+      - bearerAuth: []
+      tags:
+      - Ticket Class
+      operationId: getAllTicketClassAddOnByEventId
+      summary: List all ticket class add-ons for an event
+components:
+  securitySchemes:
+    bearerAuth:
+      name: Authorization
+      type: apiKey
+      in: header
+      description: Bearer Authorization with jwt token

@@ -1,0 +1,310 @@
+openapi: 3.2.0
+info:
+  title: Public Event Webhook API
+  version: beta
+  description: 'Response bodies vary by endpoint and may return `{ data }`, `{ dataList }`, `{ dataList, pagination }`, or no body for status-only operations. Successful responses use the HTTP status defined on each operation. Error responses return `{ error: { code, message, status, meta } }` with the corresponding HTTP status code.'
+servers:
+- url: https://esaas-api.eventx.io
+tags:
+- name: Event Webhook
+paths:
+  /public-api/v1/event/{eventId}/webhook/all:
+    get:
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  dataList:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                        url:
+                          type: string
+                        actions:
+                          type: array
+                          items:
+                            type: string
+                            enum:
+                            - attendee-create
+                            - attendee-update
+                            - attendee-delete
+                            - attendee-check-in
+                            - attendee-check-out
+                          minItems: 1
+                        rawData:
+                          type: object
+                          properties:
+                            url:
+                              type: string
+                            actions:
+                              type: array
+                              items:
+                                type: string
+                                enum:
+                                - attendee-create
+                                - attendee-update
+                                - attendee-delete
+                                - attendee-check-in
+                                - attendee-check-out
+                              minItems: 1
+                          additionalProperties: false
+                      required:
+                      - id
+                      - url
+                      - actions
+                      - rawData
+                      additionalProperties: false
+                required:
+                - dataList
+                additionalProperties: false
+        '500':
+          description: ERROR
+      parameters:
+      - name: eventId
+        in: path
+        required: true
+        schema:
+          type: string
+      security:
+      - bearerAuth: []
+      tags:
+      - Event Webhook
+      operationId: getAllEventWebhook
+      summary: List all webhooks for an event
+  /public-api/v1/event/{eventId}/webhook:
+    post:
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        format: uuid
+                      url:
+                        type: string
+                      actions:
+                        type: array
+                        items:
+                          type: string
+                          enum:
+                          - attendee-create
+                          - attendee-update
+                          - attendee-delete
+                          - attendee-check-in
+                          - attendee-check-out
+                        minItems: 1
+                      rawData:
+                        type: object
+                        properties:
+                          url:
+                            type: string
+                          actions:
+                            type: array
+                            items:
+                              type: string
+                              enum:
+                              - attendee-create
+                              - attendee-update
+                              - attendee-delete
+                              - attendee-check-in
+                              - attendee-check-out
+                            minItems: 1
+                        additionalProperties: false
+                    required:
+                    - id
+                    - url
+                    - actions
+                    - rawData
+                    additionalProperties: false
+                required:
+                - data
+                additionalProperties: false
+        '500':
+          description: ERROR
+      parameters:
+      - name: eventId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                url:
+                  type: string
+                actions:
+                  type: array
+                  items:
+                    type: string
+                    enum:
+                    - attendee-create
+                    - attendee-update
+                    - attendee-delete
+                    - attendee-check-in
+                    - attendee-check-out
+                  minItems: 1
+              required:
+              - url
+              - actions
+              additionalProperties: false
+      security:
+      - bearerAuth: []
+      tags:
+      - Event Webhook
+      operationId: createEventWebhook
+      summary: Create a webhook subscription for an event
+      description: "Configure a URL to receive attendee lifecycle events.\n\nWhen a matching action fires, EventX sends an HTTP POST to your endpoint with this payload:\n\n```json\n{\n  \"config\": {\n    \"event_id\": \"95b71478-c7dd-4bbd-b65b-244a63d3e689\",\n    \"webhook_id\": \"59acba79-1ff4-4ade-8e74-6491e73e2d28\",\n    \"action\": \"attendee-update\",\n    \"endpoint_url\": \"https://hooks.example.com/webhook\"\n  },\n  \"attendee\": {\n    \"id\": \"a2f46cf1-6787-45a2-bb8b-08cc6d6114d2\",\n    \"first_name\": \"angussdf\",\n    \"last_name\": \"luk\",\n    \"firstName\": \"angussdf\",\n    \"lastName\": \"luk\",\n    \"name\": \"angus luk nw1k\",\n    \"email\": \"attendee@example.com\",\n    \"registration_status\": \"registered\",\n    \"virtual_attendance_status\": \"pending\",\n    \"first_entered_web_app_at\": null,\n    \"magic_link_url\": \"https://portal.eventx.io/magic-link/00000000-0000-0000-0000-000000000000/authorize\",\n    \"attendance_type\": \"pending\",\n    \"role_tags\": [\n      \"visitor\"\n    ],\n    \"ticket_class_id\": null,\n    \"ticket_class_name\": null,\n    \"job_title\": \"manager\",\n    \"organization\": \"eventx\",\n    \"city\": null,\n    \"country\": \"HK\",\n    \"area_code\": \"852\",\n    \"contact_no\": \"51234567\",\n    \"source\": null,\n    \"created_at\": \"2026-07-30T01:46:33.487Z\",\n    \"update_at\": \"2026-07-30T01:48:16.845Z\",\n    \"attended_at\": null,\n    \"registered_at\": \"2026-07-30T01:46:33.487Z\",\n    \"checked_in_at\": null,\n    \"custom_fields\": {},\n    \"check_in_method\": null\n  }\n}\n\nYour server must respond with any 2xx status to acknowledge receipt."
+  /public-api/v1/event/{eventId}/webhook/{webhookId}:
+    patch:
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        format: uuid
+                      url:
+                        type: string
+                      actions:
+                        type: array
+                        items:
+                          type: string
+                          enum:
+                          - attendee-create
+                          - attendee-update
+                          - attendee-delete
+                          - attendee-check-in
+                          - attendee-check-out
+                        minItems: 1
+                      rawData:
+                        type: object
+                        properties:
+                          url:
+                            type: string
+                          actions:
+                            type: array
+                            items:
+                              type: string
+                              enum:
+                              - attendee-create
+                              - attendee-update
+                              - attendee-delete
+                              - attendee-check-in
+                              - attendee-check-out
+                            minItems: 1
+                        additionalProperties: false
+                    required:
+                    - id
+                    - url
+                    - actions
+                    - rawData
+                    additionalProperties: false
+                required:
+                - data
+                additionalProperties: false
+        '500':
+          description: ERROR
+      parameters:
+      - name: eventId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: webhookId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                url:
+                  type: string
+                actions:
+                  type: array
+                  items:
+                    type: string
+                    enum:
+                    - attendee-create
+                    - attendee-update
+                    - attendee-delete
+                    - attendee-check-in
+                    - attendee-check-out
+                  minItems: 1
+              additionalProperties: false
+      security:
+      - bearerAuth: []
+      tags:
+      - Event Webhook
+      operationId: patchEventWebhookById
+      summary: Partially update a webhook
+    delete:
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+                additionalProperties: false
+        '500':
+          description: ERROR
+      parameters:
+      - name: eventId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: webhookId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      security:
+      - bearerAuth: []
+      tags:
+      - Event Webhook
+      operationId: deleteEventWebhookById
+      summary: Permanently delete a webhook
+      description: Hard delete. The webhook is permanently removed from the database.
+components:
+  securitySchemes:
+    bearerAuth:
+      name: Authorization
+      type: apiKey
+      in: header
+      description: Bearer Authorization with jwt token
