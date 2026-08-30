@@ -114,6 +114,8 @@ apis:
   humanURL: https://eventx-hq.gitbook.io/knowledge-base/api-doc/auth
   baseURL: https://esaas-api.eventx.io
   tags:
+  - Authentication
+  tags_raw:
   - Auth
   properties:
   - type: OpenAPI
@@ -274,6 +276,8 @@ apis:
   humanURL: https://eventx-hq.gitbook.io/knowledge-base/api-doc/auth
   baseURL: https://esaas-api.eventx.io
   tags:
+  - Public API
+  tags_raw:
   - Public Api
   properties:
   - type: OpenAPI
