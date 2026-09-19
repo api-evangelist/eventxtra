@@ -64,7 +64,7 @@ tags:
 - MCP
 - Artificial Intelligence
 - Hong Kong
-- APAC
+- Asia Pacific
 tags_raw:
 - Company
 - Event Management
@@ -188,6 +188,8 @@ apis:
   humanURL: https://eventx-hq.gitbook.io/knowledge-base/api-doc/auth
   baseURL: https://esaas-api.eventx.io
   tags:
+  - Invoices
+  tags_raw:
   - Invoice
   properties:
   - type: OpenAPI
@@ -268,7 +270,7 @@ apis:
   humanURL: https://eventx-hq.gitbook.io/knowledge-base/api-doc/auth
   baseURL: https://esaas-api.eventx.io
   tags:
-  - Public API
+  - Public APIs
   tags_raw:
   - Public Api
   properties:
