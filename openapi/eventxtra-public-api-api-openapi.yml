@@ -6,7 +6,7 @@ info:
 servers:
 - url: https://esaas-api.eventx.io
 tags:
-- name: Public Api
+- name: Public API
 paths:
   /public-api/v1/org/{orgId}/custom-domains:
     get:
@@ -43,7 +43,7 @@ paths:
       operationId: listCustomDomains
       summary: List custom domains for an organization
       tags:
-      - Public Api
+      - Public API
     post:
       responses: {}
       parameters:
@@ -69,7 +69,7 @@ paths:
       operationId: createCustomDomain
       summary: Create a custom domain via Cloudflare
       tags:
-      - Public Api
+      - Public API
   /public-api/v1/org/{orgId}/custom-domains/{customDomainId}:
     get:
       responses: {}
@@ -87,7 +87,7 @@ paths:
       operationId: getCustomDomainDetail
       summary: Get custom domain details with DNS records
       tags:
-      - Public Api
+      - Public API
     put:
       responses: {}
       parameters:
@@ -115,7 +115,7 @@ paths:
       operationId: updateCustomDomain
       summary: Update the default redirect URL of a custom domain
       tags:
-      - Public Api
+      - Public API
     delete:
       responses: {}
       parameters:
@@ -132,7 +132,7 @@ paths:
       operationId: deleteCustomDomain
       summary: Delete a custom domain
       tags:
-      - Public Api
+      - Public API
   /public-api/v1/org/{orgId}/custom-domains/{customDomainId}/verify:
     put:
       responses: {}
@@ -151,7 +151,7 @@ paths:
       summary: Trigger DNS verification for a custom domain
       description: Initiates DNS ownership and SSL verification checks. Idempotent — can be called multiple times to refresh the verification status.
       tags:
-      - Public Api
+      - Public API
   /public-api/v1/org/{orgId}/custom-domains/{customDomainId}/path-mappings:
     get:
       responses: {}
@@ -182,7 +182,7 @@ paths:
       operationId: listPathMappings
       summary: List path mappings for a custom domain
       tags:
-      - Public Api
+      - Public API
     post:
       responses: {}
       parameters:
@@ -215,7 +215,7 @@ paths:
       operationId: createPathMapping
       summary: Create a path mapping for a custom domain
       tags:
-      - Public Api
+      - Public API
   /public-api/v1/org/{orgId}/custom-domains/{customDomainId}/path-mappings/{pathMappingId}:
     put:
       responses: {}
@@ -252,7 +252,7 @@ paths:
       operationId: updatePathMapping
       summary: Update a path mapping
       tags:
-      - Public Api
+      - Public API
     delete:
       responses: {}
       parameters:
@@ -274,7 +274,7 @@ paths:
       operationId: deletePathMapping
       summary: Delete a path mapping
       tags:
-      - Public Api
+      - Public API
 components:
   securitySchemes:
     bearerAuth:

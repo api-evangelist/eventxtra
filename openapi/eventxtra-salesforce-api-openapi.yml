@@ -38,6 +38,8 @@ paths:
       tags:
       - Salesforce
       operationId: getSalesforceAccount
+      summary: Get salesforce account
+      x-summary-source: derived
 components:
   securitySchemes:
     bearerAuth:
