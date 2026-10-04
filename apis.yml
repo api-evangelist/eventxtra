@@ -51,6 +51,9 @@ x-tier-reason: published-openapi-and-webhook-surface
 specificationVersion: '0.23'
 created: '2026-07-17'
 modified: '2026-09-16'
+x-docs-platform: gitbook
+x-docs-platform-confidence: high
+x-docs-platform-checked: 2026-10-03
 tags:
 - Company
 - Event Management
@@ -392,6 +395,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: CapabilityMap
+  url: capabilities/eventxtra-capability-edges.yml
+  name: EventX Business Capability Map
 - type: AgenticAccess
   url: agentic-access/eventxtra-agentic-access.yml
 - type: Authentication

@@ -1,24 +1,22 @@
-# Kin Score artifact — eventxtra — 2026-09-01T222808
+# Kin Score artifact — eventxtra — 2026-09-25T210408
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: eventxtra
-  schema_version: 0.18.0
-  scored_at: '2026-09-01'
-  run_ts: 2026-09-01T222808
-  composite: 54.3
+  schema_version: 0.23.0
+  scored_at: '2026-09-25'
+  run_ts: 2026-09-25T210408
+  composite: 56.0
   band: strong
   facets:
-    discoverability: 75.9
-    contract_quality: 58.8
-    governance: 18.2
+    discoverability: 71.7
+    contract_quality: 54.3
+    contract_governance: 18.2
     operational_transparency: 47.4
     developer_ergonomics: 32.7
-    commercial_clarity: 85.5
-    contract_governance: 18.2
     access_clarity: 85.5
   agent_readiness:
-    score: 36.4
+    score: 34.2
     band: agent-ready
     dimensions:
       spec_presence: true
@@ -27,7 +25,7 @@ kin_score:
       mcp_server: documented
       auth_clarity: bearer
       idempotency: false
-      error_semantics: documented
+      error_semantics: derived
       openapi_examples: verified
       rate_limit_signal: documented
       event_surface_described: true
@@ -40,6 +38,12 @@ kin_score:
       protected_resource_metadata: false
       dynamic_client_registration: false
       agentic_commerce: false
+  regulatory:
+    applies: true
+    regime: Horizontal (data, software, accessibility, platform)
+    regime_id: horizontal
+    score: 27.3
+    matched_via: fallback
   provenance:
     mcp: first-party
     skills: derived
