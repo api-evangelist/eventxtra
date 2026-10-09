@@ -1,72 +1,26 @@
-generated: '2026-08-13'
+generated: '2026-09-23'
 method: generated
-source: openapi/eventxtra-public-api-openapi.json
+source: openapi/eventxtra-attendee-api-openapi.yml, openapi/eventxtra-auth-api-openapi.yml,
+  openapi/eventxtra-custom-field-api-openapi.yml, openapi/eventxtra-event-api-openapi.yml, openapi/eventxtra-event-webhook-api-openapi.yml,
+  openapi/eventxtra-invoice-api-openapi.yml, openapi/eventxtra-media-api-openapi.yml, openapi/eventxtra-order-api-openapi.yml,
+  openapi/eventxtra-outreach-api-openapi.yml, openapi/eventxtra-public-api-api-openapi.yml,
+  openapi/eventxtra-registration-form-api-openapi.yml, openapi/eventxtra-registration-order-api-openapi.yml,
+  openapi/eventxtra-registration-service-api-openapi.yml, openapi/eventxtra-salesforce-api-openapi.yml,
+  openapi/eventxtra-ticket-class-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
   operations: 58
   by_action_class:
-    acting: 35
-    connected: 23
+    connected: 25
+    acting: 33
   by_consequence:
+    read: 25
     write: 27
-    read: 23
-    physical: 8
+    physical: 6
   human_in_the_loop_required: 0
 operations:
-- path: /public-api/v1/auth
-  method: post
-  operationId: issueJwt
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /public-api/v1/event
-  method: get
-  operationId: getPaginatedEvent
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /public-api/v1/event
-  method: post
-  operationId: createEvent
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /public-api/v1/event/hosting-event
-  method: get
-  operationId: getPaginatedHostingEvent
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
 - path: /public-api/v1/event/{eventId}/attendee
   method: get
   operationId: getPaginatedAttendeeByEventId
@@ -197,6 +151,22 @@ operations:
     token:
       max-ttl: 3600
     audit: none
+- path: /public-api/v1/auth
+  method: post
+  operationId: issueJwt
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
 - path: /public-api/v1/event/{eventId}/custom-field/all
   method: get
   operationId: getAllCustomFieldByEventId
@@ -223,6 +193,42 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /public-api/v1/event
+  method: get
+  operationId: getPaginatedEvent
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /public-api/v1/event
+  method: post
+  operationId: createEvent
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /public-api/v1/event/hosting-event
+  method: get
+  operationId: getPaginatedHostingEvent
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /public-api/v1/event/{eventId}
   method: get
   operationId: getEventById
@@ -326,6 +332,84 @@ operations:
 - path: /public-api/v1/event/{eventId}/webhook/{webhookId}
   method: delete
   operationId: deleteEventWebhookById
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /public-api/v1/event/{eventId}/invoice/details
+  method: post
+  operationId: invoiceDetails
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /public-api/v1/event/{eventId}/invoice/{orderId}
+  method: get
+  operationId: getOneOrderInvoice
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /public-api/v1/event/{eventId}/media
+  method: post
+  operationId: createMedia
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /public-api/v1/event/{eventId}/media/{mediaId}/mark-uploaded
+  method: put
+  operationId: markMediaAsUploaded
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /public-api/v1/event/{eventId}/media/{mediaId}
+  method: get
+  operationId: getOneMedia
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /public-api/v1/event/{eventId}/media/{mediaId}
+  method: delete
+  operationId: removeOneMedia
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -447,45 +531,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /public-api/v1/event/{eventId}/ticket-class/all
-  method: get
-  operationId: getAllTicketClassByEventId
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /public-api/v1/event/{eventId}/ticket-class
+- path: /public-api/v1/outreach/{eventId}/manual-email/{outreachEmailId}/send
   method: post
-  operationId: createTicketClass
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /public-api/v1/event/{eventId}/ticket-class-add-on/all
-  method: get
-  operationId: getAllTicketClassAddOnByEventId
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /public-api/v1/event/{eventId}/invoice/details
-  method: post
-  operationId: invoiceDetails
+  operationId: sendManualEmailByEventId
   x-agentic-access:
     action-class: acting
     consequence: physical
@@ -495,90 +543,6 @@ operations:
       max-ttl: 300
       exchange: true
       purpose-required: true
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /public-api/v1/event/{eventId}/invoice/{orderId}
-  method: get
-  operationId: getOneOrderInvoice
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /public-api/v1/event/{eventId}/media
-  method: post
-  operationId: createMedia
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /public-api/v1/event/{eventId}/media/{mediaId}/mark-uploaded
-  method: put
-  operationId: markMediaAsUploaded
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /public-api/v1/event/{eventId}/media/{mediaId}
-  method: get
-  operationId: getOneMedia
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /public-api/v1/event/{eventId}/media/{mediaId}
-  method: delete
-  operationId: removeOneMedia
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /public-api/v1/event/{eventId}/registration-form
-  method: post
-  operationId: createRegForm
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
     escalation:
       human-in-the-loop: conditional
       triggers:
@@ -727,16 +691,22 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /public-api/v1/reg/event/{eventId}
-  method: get
-  operationId: getPaymentConfigByEventId
+- path: /public-api/v1/event/{eventId}/registration-form
+  method: post
+  operationId: createRegForm
   x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
     token:
-      max-ttl: 3600
-    audit: none
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
 - path: /public-api/v1/reg/event/{eventId}
   method: post
   operationId: createOrder
@@ -755,16 +725,6 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /public-api/v1/reg/event/{eventId}/{eventRegFormId}
-  method: get
-  operationId: getRegFormByEventIdAndId
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
 - path: /public-api/v1/reg/event/{eventId}/{orderId}/status
   method: get
   operationId: getOrderStatus
@@ -779,41 +739,71 @@ operations:
   method: post
   operationId: getOrderQuotation
   x-agentic-access:
-    action-class: acting
-    consequence: physical
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /public-api/v1/outreach/{eventId}/manual-email/{outreachEmailId}/send
-  method: post
-  operationId: sendManualEmailByEventId
+      max-ttl: 3600
+    audit: none
+- path: /public-api/v1/reg/event/{eventId}
+  method: get
+  operationId: getPaymentConfigByEventId
   x-agentic-access:
-    action-class: acting
-    consequence: physical
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
+- path: /public-api/v1/reg/event/{eventId}/{eventRegFormId}
+  method: get
+  operationId: getRegFormByEventIdAndId
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /public-api/v1/salesforce-account
   method: get
   operationId: getSalesforceAccount
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /public-api/v1/event/{eventId}/ticket-class/all
+  method: get
+  operationId: getAllTicketClassByEventId
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /public-api/v1/event/{eventId}/ticket-class
+  method: post
+  operationId: createTicketClass
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /public-api/v1/event/{eventId}/ticket-class-add-on/all
+  method: get
+  operationId: getAllTicketClassAddOnByEventId
   x-agentic-access:
     action-class: connected
     consequence: read
