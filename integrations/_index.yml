@@ -16,3 +16,34 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
+- slug: eventxtra-npm-registry
+  label: npm registry
+  partner: npm
+  partner_name: npm registry
+  category: official SDK (JavaScript/TypeScript)
+  type: register
+  channel: package-registry
+  evidence: https://www.npmjs.com/package/@eventx/await-busboy
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: npm registry (public registry JSON)
+    spec_file: null
+    language: JavaScript/TypeScript
+    packages:
+    - name: '@eventx/await-busboy'
+      version: 1.0.4
+      released: '2022-06-21'
+      released_field: modified
+      lapsed: true
+      page: https://www.npmjs.com/package/@eventx/await-busboy
+      repo_leg: github-org:eventxtra
+      publisher_leg: email:eventx.io
+      matched_by: domain
+    current: false
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
