@@ -545,3 +545,9 @@ components:
       type: apiKey
       in: header
       description: Bearer Authorization with jwt token
+x-provenance:
+  method: harvested
+  publisher: EventX
+  source: https://esaas-api.eventx.io/api-docs/public-api/openApi.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
